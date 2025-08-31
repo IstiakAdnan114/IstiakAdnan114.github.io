@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Md. Istiak Adnan - Visual CV</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-links@2.12.0/tsparticles.preset.links.bundle.min.js"
+        integrity="sha256-Kq9IblhtnUOu75DRD4BIgJ4p4/7JUMMy6eXI/YcTo0c=" crossorigin="anonymous" async defer
+        onload="setupParticlesBackground()"></script>
+
+    <style>
+        @keyframes spin-slow {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .rotating-circle {
+            animation: spin-slow 60s linear infinite;
+        }
+    </style>
+
+
+    <style>
+        /* Particle background styles */
+        #particles-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            z-index: -1;
+            background: linear-gradient(to bottom, #1a0033, #2a4066);
+            /* Blue to purple gradient */
+        }
+
+        .hero-background {
+            position: relative;
+            min-height: 100vh;
+            background: none;
+            /* Remove old background */
+        }
+
+        .hero-background::before {
+            content: none;
+            /* Remove old overlay */
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            padding: 4rem 1rem;
+            text-align: center;
+            color: white;
+        }
+
+        .hero-content h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero-content h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero-content p {
+            font-size: 1rem;
+            max-width: 80%;
+            margin: 0 auto 2rem;
+        }
+
+        .hero-content .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            font-size: 1.5rem;
+        }
+
+        @media (min-width: 640px) {
+            .hero-content h1 {
+                font-size: 4rem;
+            }
+
+            .hero-content h2 {
+                font-size: 2rem;
+            }
+
+            .hero-content p {
+                font-size: 1.25rem;
+            }
+        }
+
+        /* Hamburger menu styles */
+        .hamburger-icon {
+            font-size: 1.5rem;
+            line-height: 1;
+        }
+
+        #nav-menu.active {
+            visibility: visible;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 767px) {
+            #nav-menu {
+                transform: translateY(-10px);
+            }
+
+            #nav-menu.active {
+                transform: translateY(0);
+            }
+        }
+
+
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f2f5;
+            color: #1a202c;
+        }
+
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .brand-text {
+            color: #3D348B;
+        }
+
+        .brand-bg {
+            background-color: #3D348B;
+        }
+
+        .accent-bg-1 {
+            background-color: #7678ED;
+        }
+
+        .accent-bg-2 {
+            background-color: #F7B801;
+        }
+
+        .accent-bg-3 {
+            background-color: #F18701;
+        }
+
+        .accent-text-2 {
+            color: #F7B801;
+        }
+
+        .sticky-header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background-color: #3D348B;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Timeline adjustments for responsiveness */
+        .timeline-date-mobile {
+            text-align: left;
+            margin-bottom: 0.5rem;
+            color: #3D348B;
+            font-weight: 700;
+        }
+
+        .timeline-content-mobile {
+            margin-left: auto;
+            margin-right: auto;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        @media (min-width: 768px) {
+            .timeline-item-container {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-bottom: 3rem;
+            }
+
+            .timeline-date-desktop-right {
+                text-align: right;
+                padding-right: 2rem;
+            }
+
+            .timeline-date-desktop-left {
+                text-align: left;
+                padding-left: 2rem;
+            }
+
+            .timeline-content-desktop {
+                width: 40%;
+                max-width: 400px;
+            }
+        }
+
+        @media (max-width: 320px) {
+            .timeline-content-mobile {
+                max-width: 90%;
+            }
+
+            .timeline-date-mobile {
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Hero section background image styling */
+        .hero-background {
+            background-image: url('/images/alone.jpeg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: relative;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-background::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.4);
+            z-index: 1;
+        }
+
+        .hero-background>div {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-background .brand-text {
+            color: #F7B801;
+        }
+
+        .hero-background .text-gray-700,
+        .hero-background .text-gray-600,
+        .hero-background .text-gray-500 {
+            color: white;
+        }
+
+        /* Ensure hero section scales properly */
+        @media (max-width: 640px) {
+            .hero-background h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-background h2 {
+                font-size: 1.5rem;
+            }
+
+            .hero-background p {
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Photo gallery responsiveness */
+        @media (max-width: 640px) {
+            .photo-gallery {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            }
+        }
+
+        @media (min-width: 1536px) {
+            .photo-gallery {
+                grid-template-columns: repeat(5, 1fr);
+            }
+        }
+    </style>
+</head>
+
+<body class="antialiased">
+    <header class="sticky-header py-4 bg-[#3D348B] text-white">
+        <nav role="navigation" aria-label="Main navigation"
+            class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+
+            <!-- Hamburger Menu (Mobile Only) -->
+            <button id="hamburger-btn" class="md:hidden text-white focus:outline-none text-3xl"
+                aria-label="Toggle navigation menu">
+                ☰
+            </button>
+
+            <!-- Navigation Menu -->
+            <ul id="nav-menu" class="flex items-center justify-center flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-8 transition-all duration-300 ease-in-out
+               absolute md:static top-16 left-0 w-full md:w-auto bg-[#3D348B] md:bg-transparent p-4 md:p-0 z-50
+               invisible md:visible opacity-0 md:opacity-100">
+
+                <li><a href="#home" class="text-white hover:text-gray-300 font-medium transition-colors">Home</a></li>
+                <li><a href="#about" class="text-white hover:text-gray-300 font-medium transition-colors">About Me</a>
+                </li>
+                <li><a href="#experience"
+                        class="text-white hover:text-gray-300 font-medium transition-colors">Experience</a></li>
+                <li><a href="#skills" class="text-white hover:text-gray-300 font-medium transition-colors">Skills</a>
+                </li>
+                <li><a href="#projects"
+                        class="text-white hover:text-gray-300 font-medium transition-colors">Projects</a></li>
+                <li><a href="#photos" class="text-white hover:text-gray-300 font-medium transition-colors">Photos</a>
+                </li>
+                <li><a href="#achievements"
+                        class="text-white hover:text-gray-300 font-medium transition-colors">Achievements</a></li>
+                <li><a href="#contact" class="text-white hover:text-gray-300 font-medium transition-colors">Contact</a>
+                </li>
+            </ul>
+
+        </nav>
+    </header>
+
+
+    <main>
+        <section id="home" class="hero-background">
+            <div id="particles-background"></div>
+            <div class="hero-content">
+                <img src="C:\Users\USER\Desktop\Webpage\images\Adnan_Professional.jpg" alt="Adnan"
+                    class="w-32 h-32 rounded-full mx-auto mb-4 object-cover">
+                <h1 class="text-4xl sm:text-5xl md:text-8xl font-black brand-text tracking-tighter mb-4">Md. Istiak
+                    Adnan</h1>
+                <h2 class="text-xl sm:text-2xl md:text-4xl font-semibold mb-8">Industrial & Production Engineer</h2>
+                <p class="text-base sm:text-lg max-w-2xl mx-auto mb-8">
+                    A dedicated and analytical final-year Industrial and Production Engineering student from BUET, with
+                    a strong foundation in process optimization, quality control, and project management. Eager to drive
+                    efficiency and innovation.
+                </p>
+                <div class="flex items-center justify-center space-x-6">
+                    <a href="mailto:adnanistiak111@gmail.com" class="hover:text-gray-300 transition-colors"
+                        aria-label="Email Md. Istiak Adnan">
+                        <span class="text-2xl">✉️</span>
+                        <span class="sr-only">Email</span>
+                    </a>
+                    <a href="https://linkedin.com/in/istiak-adnan" target="_blank" rel="noopener noreferrer"
+                        class="hover:text-gray-300 transition-colors" aria-label="Visit LinkedIn Profile">
+                        <span class="text-2xl">🔗</span>
+                        <span class="sr-only">LinkedIn</span>
+                    </a>
+                    <span class="text-2xl">📍</span>
+                    <span class="font-medium ml-1">BUET, Palashi, Dhaka</span>
+                </div>
+            </div>
+            <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce" data-aos="fade-up"
+                data-aos-delay="500" data-aos-duration="1500">
+                <a href="#about" class="text-4xl text-white" aria-label="Scroll to About section">↓</a>
+            </div>
+
+
+        </section>
+
+        <section id="about" class="py-20 px-4 sm:px-8 fade-in-section">
+            <div class="max-w-5xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold brand-text mb-4">About Me</h2>
+                    <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                        I am a final-year Industrial and Production Engineering student at Bangladesh University of
+                        Engineering and Technology (BUET).
+                        While my studies have deepened my understanding of industrial processes, my involvement in
+                        campus outreach and event promotion has enhanced my communication and organizational skills.
+                        I thrive in environments that challenge me to apply my skills in process optimization, quality
+                        control, and project management.
+                        Beyond academics, my involvement in case competitions and voluntary activities has significantly
+                        honed my communication,
+                        teamwork, and problem-solving abilities. I am passionate about creating efficient systems and
+                        innovative solutions that drive tangible results.
+                    </p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-center">
+                    <div class="bg-white p-8 rounded-xl shadow-lg">
+                        <h3 class="text-2xl font-semibold text-gray-700 mb-4">Education</h3>
+                        <p class="text-lg font-bold brand-text">Bangladesh University of Engineering and Technology
+                            (BUET)</p>
+                        <p class="text-md text-gray-600 mb-2">Department of Industrial and Production Engineering</p>
+                        <p class="text-md text-gray-500">2021 - Present</p>
+                        <p class="text-md font-semibold mt-2">CGPA: 3.16 / 4.00</p>
+                        <hr class="my-4 border-gray-200">
+                        <p class="text-lg font-bold brand-text">Govt. Azizul Haque College, Bogura</p>
+                        <p class="text-md text-gray-600 mb-2">Science Background</p>
+                        <p class="text-md text-gray-500">2018 - 2020</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-xl shadow-lg">
+                        <h3 class="text-2xl font-semibold text-gray-700 mb-4">Core Strengths</h3>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="flex flex-col items-center">
+                                <span class="text-4xl accent-text-2">💡</span>
+                                <p class="text-md text-gray-700 font-medium">Problem Solving</p>
+                            </div>
+                            <div class="flex flex-col items-center">
+                                <span class="text-4xl accent-text-2">🗣️</span>
+                                <p class="text-md text-gray-700 font-medium">Communication</p>
+                            </div>
+                            <div class="flex flex-col items-center">
+                                <span class="text-4xl accent-text-2">🤝</span>
+                                <p class="text-md text-gray-700 font-medium">Teamwork</p>
+                            </div>
+                            <div class="flex flex-col items-center">
+                                <span class="text-4xl accent-text-2">⏱️</span>
+                                <p class="text-md text-gray-700 font-medium">Time Management</p>
+                            </div>
+                        </div>
+                        <hr class="my-4 border-gray-200">
+                        <h3 class="text-xl font-semibold text-gray-700 mb-2">Interests and Hobbies</h3>
+                        <ul class="text-gray-600 list-disc list-inside text-left mx-auto max-w-xs">
+                            <li>Photography</li>
+                            <li>Reflective Thinking</li>
+                            <li>Singing</li>
+                            <li>Helping Others</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience" class="py-20 px-4 sm:px-8 md:px-4 fade-in-section bg-gray-50">
+            <div class="max-w-5xl mx-auto">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-bold brand-text mb-4">Professional & Extracurricular Journey</h2>
+                    <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                        My journey has been shaped by diverse experiences, from academic roles to leading hackathon
+                        teams, each contributing to my growth.
+                    </p>
+                </div>
+                <div class="relative">
+                    <div class="absolute left-1/2 -translate-x-1/2 h-full w-0.5 brand-bg rounded"></div>
+                    <div class="timeline-item-container relative mb-12">
+                        <div
+                            class="absolute left-1/2 -translate-x-1/2 -translate-y-1/2 w-8 h-8 rounded-full accent-bg-1 border-4 border-white z-20">
+                        </div>
+                        <div class="w-full md:w-5/12 text-left md:text-right md:pr-8 md:order-1">
+                            <p class="text-xl font-bold brand-text timeline-date-mobile">Jun 2023 - Present</p>
+                        </div>
+                        <div
+                            class="timeline-content-mobile md:timeline-content-desktop md:w-5/12 mt-4 md:mt-0 p-6 bg-white rounded-lg shadow-lg md:order-2">
+                            <h4 class="font-bold text-lg mb-2">Teacher - Material Section (Part-time), Udvash</h4>
+                            <ul class="list-disc list-inside text-gray-700 text-sm">
+                                <li>Reviewing and creating syllabus-based questions and answers.</li>
+                                <li>Collaborating with the team to maintain content quality and consistency.</li>
+                                <li>Ensuring timely completion of tasks.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="timeline-item-container relative mb-12 md:flex-row-reverse">
+                        <div
+                            class="absolute left-1/2 -translate-x-1/2 -translate-y-1/2 w-8 h-8 rounded-full accent-bg-2 border-4 border-white z-20">
+                        </div>
+                        <div class="w-full md:w-5/12 text-left md:text-left md:pl-8 md:order-2">
+                            <p class="text-xl font-bold brand-text timeline-date-mobile">Jan 2025 - Present</p>
+                        </div>
+                        <div
+                            class="timeline-content-mobile md:timeline-content-desktop md:w-5/12 mt-4 md:mt-0 p-6 bg-white rounded-lg shadow-lg md:order-1">
+                            <h4 class="font-bold text-lg mb-2">Team Leader & Campus Ambassador, Three Zero Hackathon
+                                2025</h4>
+                            <ul class="list-disc list-inside text-gray-700 text-sm">
+                                <li>Leading a BUET team in a global business idea competition aligned with Dr. Muhammad
+                                    Yunus's vision of Zero Poverty, Zero Unemployment, and Zero Net Carbon Emissions.
+                                </li>
+                                <li>Promoting the event at BUET and coordinating outreach activities as official Campus
+                                    Ambassador.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="timeline-item-container relative mb-12">
+                        <div
+                            class="absolute left-1/2 -translate-x-1/2 -translate-y-1/2 w-8 h-8 rounded-full accent-bg-3 border-4 border-white z-20">
+                        </div>
+                        <div class="w-full md:w-5/12 text-left md:text-right md:pr-8 md:order-1">
+                            <p class="text-xl font-bold brand-text timeline-date-mobile">Oct 2024 - Nov 2024</p>
+                        </div>
+                        <div
+                            class="timeline-content-mobile md:timeline-content-desktop md:w-5/12 mt-4 md:mt-0 p-6 bg-white rounded-lg shadow-lg md:order-2">
+                            <h4 class="font-bold text-lg mb-2">Team Member, "Munhamanna Chocolate", Hult Prize 2024
+                                (Case Competition)</h4>
+                            <ul class="list-disc list-inside text-gray-700 text-sm">
+                                <li>Co-founded a sustainable chocolate concept emphasizing ethical cocoa sourcing and
+                                    rural job creation.</li>
+                                <li>Conducted market analysis and pitched the business model, advancing to the first
+                                    round of the BUET Hult Prize 2024.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="timeline-item-container relative mb-12 md:flex-row-reverse">
+                        <div
+                            class="absolute left-1/2 -translate-x-1/2 -translate-y-1/2 w-8 h-8 rounded-full accent-bg-1 border-4 border-white z-20">
+                        </div>
+                        <div class="w-full md:w-5/12 text-left md:text-left md:pl-8 md:order-2">
+                            <p class="text-xl font-bold brand-text timeline-date-mobile">Various</p>
+                        </div>
+                        <div
+                            class="timeline-content-mobile md:timeline-content-desktop md:w-5/12 mt-4 md:mt-0 p-6 bg-white rounded-lg shadow-lg md:order-1">
+                            <h4 class="font-bold text-lg mb-2">Industrial Visit to PRAN & RFL Industrial Parks</h4>
+                            <ul class="list-disc list-inside text-gray-700 text-sm">
+                                <li>Observed plastic manufacturing, injection molding, and recycling processes.</li>
+                                <li>Gained experience with CNC milling, wire EDM, and rotary molding machines.</li>
+                                <li>Learned about Six Sigma, Poka-yoke, and SMV in production and assembly lines.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="timeline-item-container relative mb-12">
+                        <div
+                            class="absolute left-1/2 -translate-x-1/2 -translate-y-1/2 w-8 h-8 rounded-full accent-bg-2 border-4 border-white z-20">
+                        </div>
+                        <div class="w-full md:w-5/12 text-left md:text-right md:pr-8 md:order-1">
+                            <p class="text-xl font-bold brand-text timeline-date-mobile">Aug 2024</p>
+                        </div>
+                        <div
+                            class="timeline-content-mobile md:timeline-content-desktop md:w-5/12 mt-4 md:mt-0 p-6 bg-white rounded-lg shadow-lg md:order-2">
+                            <h4 class="font-bold text-lg mb-2">Volunteer, Team Badhan, BUET Branch</h4>
+                            <ul class="list-disc list-inside text-gray-700 text-sm">
+                                <li>Contributed to flood relief efforts in August 2024.</li>
+                                <li>Responsibilities included fundraising, organizing, and distributing packaged aid to
+                                    severely affected communities.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="py-20 px-4 sm:px-8 fade-in-section bg-white">
+            <div class="max-w-5xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold brand-text mb-4">Core Competencies</h2>
+                    <p class="text-lg text-gray-600 max-w-3xl mx-auto">My skill set is a balanced mix of technical
+                        proficiency in key engineering software and critical soft skills essential for leadership and
+                        collaboration.</p>
+                </div>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                    <div class="bg-gray-50 p-8 rounded-xl shadow-md">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-6 text-center">Technical Skills</h3>
+                        <div class="chart-container">
+                            <canvas id="technicalSkillsChart"></canvas>
+                        </div>
+                        <p class="text-center text-gray-500 mt-4">Proficiency rated on a scale of 1 to 10.</p>
+                    </div>
+                    <div class="bg-gray-50 p-8 rounded-xl shadow-md">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-6 text-center">Soft Skills</h3>
+                        <div class="chart-container">
+                            <canvas id="softSkillsChart"></canvas>
+                        </div>
+                        <p class="text-center text-gray-500 mt-4">Strength rated on a scale of 1 to 10.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="py-20 px-4 sm:px-8 fade-in-section">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold brand-text mb-4">Key Projects</h2>
+                    <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                        Through various academic and extracurricular projects, I've applied theoretical knowledge to
+                        solve real-world problems and bring concepts to life.
+                    </p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="border-l-4 border-red-500 p-6 bg-white rounded-r-lg shadow-sm">
+                        <h4 class="font-bold text-xl mb-2">Automatic Packaging Quality Check Device (Ongoing)</h4>
+                        <p class="text-gray-600 text-sm mb-2">Academic Project</p>
+                        <p class="text-gray-700">Working in a team to develop an automated quality inspection device
+                            tailored for the pharmaceutical industry. The project focuses on identifying packaging
+                            defects efficiently using sensors and electrical components.</p>
+                    </div>
+                    <div class="border-l-4 border-cyan-500 p-6 bg-white rounded-r-lg shadow-sm">
+                        <h4 class="font-bold text-xl mb-2">Undergraduate Thesis (Ongoing)</h4>
+                        <p class="text-gray-600 text-sm mb-2">Academic Project</p>
+                        <p class="text-gray-700">Conducting research on a machine learning–related topic, focusing on
+                            real-world problem-solving through data-driven techniques.</p>
+                    </div>
+                    <div class="border-l-4 border-fuchsia-500 p-6 bg-white rounded-r-lg shadow-sm">
+                        <h4 class="font-bold text-xl mb-2">Design of a Multi-Functional Vegetable Cutter</h4>
+                        <p class="text-gray-600 text-sm mb-2">2024 - Present</p>
+                        <p class="text-gray-700">Working as a team to bring a multi-functional vegetable cutter product
+                            to life through comprehensive analyses and experiments as part of the Product Design course.
+                        </p>
+                    </div>
+                    <div class="border-l-4 border-amber-500 p-6 bg-white rounded-r-lg shadow-sm">
+                        <h4 class="font-bold text-xl mb-2">RASTAR LaFerrari Remote Control Car (1/14 Scale)</h4>
+                        <p class="text-gray-600 text-sm mb-2">Jan 2023 - Feb 2023</p>
+                        <p class="text-gray-700">Designed a 1/14 scale model of a Rastar LaFerrari remote control car
+                            using SolidWorks as part of coursework.</p>
+                    </div>
+                    <div class="border-l-4 border-purple-500 p-6 bg-white rounded-r-lg shadow-sm">
+                        <h4 class="font-bold text-xl mb-2">Floor Layout Design Using AutoCAD</h4>
+                        <p class="text-gray-600 text-sm mb-2">Academic Project</p>
+                        <p class="text-gray-700">Designed a detailed floor plan of a residential house as part of the
+                            Engineering Graphics Sessional course. Gained hands-on experience in technical drawing and
+                            space planning using AutoCAD.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="photos" class="py-20 px-4 sm:px-8 fade-in-section bg-white">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold brand-text mb-4">My Photo Gallery</h2>
+                    <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                        A collection of moments and visuals from my projects, travels, and personal interests.
+                    </p>
+                </div>
+                <div class="photo-gallery grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                    <div class="rounded-lg overflow-hidden shadow-lg transform hover:scale-105 transition-transform">
+                        <img src="/images/laferrari_rc.jpeg" alt="RASTAR LaFerrari Remote Control Car"
+                            class="w-full h-48 object-cover">
+                        <div class="p-4 bg-gray-50">
+                            <p class="text-lg font-semibold text-gray-800">Project Snapshot</p>
+                            <p class="text-sm text-gray-600">A glimpse into one of my engineering projects.</p>
+                        </div>
+                    </div>
+                    <div class="rounded-lg overflow-hidden shadow-lg transform hover:scale-105 transition-transform">
+                        <img src="/images/Me_at_pran-rfl.jpg" alt="Industrial Visit at PRAN-RFL"
+                            class="w-full h-48 object-cover">
+                        <div class="p-4 bg-gray-50">
+                            <p class="text-lg font-semibold text-gray-800">Event Highlight</p>
+                            <p class="text-sm text-gray-600">A memorable moment from an extracurricular event.</p>
+                        </div>
+                    </div>
+                    <div class="rounded-lg overflow-hidden shadow-lg transform hover:scale-105 transition-transform">
+                        <img src="/images/riding_horse.jpeg" alt="Horse Riding" class="w-full h-48 object-cover">
+                        <div class="p-4 bg-gray-50">
+                            <p class="text-lg font-semibold text-gray-800">Photography Sample</p>
+                            <p class="text-sm text-gray-600">Showcasing my passion for photography.</p>
+                        </div>
+                    </div>
+                    <div class="rounded-lg overflow-hidden shadow-lg transform hover:scale-105 transition-transform">
+                        <img src="/images/me_at_cox_bazar.jpg" alt="Visit to Cox's Bazar"
+                            class="w-full h-48 object-cover">
+                        <div class="p-4 bg-gray-50">
+                            <p class="text-lg font-semibold text-gray-800">Travel Memory</p>
+                            <p class="text-sm text-gray-600">A scene from a personal trip or exploration.</p>
+                        </div>
+                    </div>
+                    <div class="rounded-lg overflow-hidden shadow-lg transform hover:scale-105 transition-transform">
+                        <img src="/images/Project_cover_page_short.png" alt="Project Cover Page"
+                            class="w-full h-48 object-cover">
+                        <div class="p-4 bg-gray-50">
+                            <p class="text-lg font-semibold text-gray-800">Another Project</p>
+                            <p class="text-sm text-gray-600">More visuals from my academic work.</p>
+                        </div>
+                    </div>
+                    <div class="rounded-lg overflow-hidden shadow-lg transform hover:scale-105 transition-transform">
+                        <img src="/images/buet_badhan.jpeg" alt="Team Badhan Volunteering"
+                            class="w-full h-48 object-cover">
+                        <div class="p-4 bg-gray-50">
+                            <p class="text-lg font-semibold text-gray-800">Volunteering Action</p>
+                            <p class="text-sm text-gray-600">Moments from community service.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="achievements" class="py-20 px-4 sm:px-8 fade-in-section bg-gray-50">
+            <div class="max-w-5xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold brand-text mb-4">Achievements & Certifications</h2>
+                    <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                        My dedication to continuous learning and excellence is reflected in my academic distinctions and
+                        professional certifications.
+                    </p>
+                </div>
+                <div class="space-y-6">
+                    <div class="bg-white p-6 rounded-lg shadow-md flex items-center">
+                        <span class="text-4xl mr-4">📈</span>
+                        <div>
+                            <p class="font-semibold text-xl">Introduction to Data Analysis using Microsoft Excel</p>
+                            <p class="text-gray-600">Coursera Project Network, Issued: May 2025</p>
+                        </div>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md flex items-center">
+                        <span class="text-4xl mr-4">📊</span>
+                        <div>
+                            <p class="font-semibold text-xl">Excel Skills for Business: Essentials</p>
+                            <p class="text-gray-600">Macquarie University, Issued: December 2023</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact"
+            class="relative min-h-screen flex flex-col items-center justify-center text-center px-4 bg-[#0f172a] text-white overflow-hidden"
+            class="bg-gray-800 text-white text-center py-16 px-4 sm:px-8">
+            <h2 class="text-4xl font-bold mb-4">Get in Touch</h2>
+            <p class="text-gray-300 max-w-xl mx-auto mb-8">I am actively seeking new opportunities and would love to
+                discuss how my skills and experience can benefit your team. Feel free to reach out!</p>
+
+            <!-- Rotating Background START -->
+            <div class="absolute inset-0 flex items-center justify-center z-0 pointer-events-none">
+                <div class="relative w-[400px] h-[600px] rotating-circle">
+                    <!-- Replace these with your own icon images or emojis -->
+                    <div class="absolute top-0 left-1/2 transform -translate-x-1/2">
+                        <span class="text-white text-2xl opacity-20">✆✉</span>
+                    </div>
+                    <div class="absolute top-0 left-1/6 transform -translate-x-1/6">
+                        <span class="text-white text-2xl opacity-20">📥</span>
+                    </div>
+                    <div class="absolute right-0 top-1/2 transform -translate-y-1/2">
+                        <span class="text-white text-2xl opacity-20">☎️</span>
+                    </div>
+                    <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2">
+                        <span class="text-white text-2xl opacity-20">📞</span>
+                    </div>
+                    <div class="absolute left-0 top-1/2 transform -translate-y-1/2">
+                        <span class="text-white text-2xl opacity-20">🔗</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Rotating Background END -->
+
+            <!-- Hero Content -->
+            <div class="hero-content relative z-10">
+                <!-- Your name, image, bio, etc. goes here -->
+            </div>
+
+            <div class="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-8 mb-8">
+                <div class="flex items-center text-lg">
+                    <span class="text-3xl mr-3">✉️</span>
+                    <a href="mailto:adnanistiak111@gmail.com" class="hover:underline"
+                        aria-label="Email Md. Istiak Adnan">adnanistiak111@gmail.com</a>
+                </div>
+                <div class="flex items-center text-lg">
+                    <span class="text-3xl mr-3">📞</span>
+                    <span>+8801884562034</span>
+                </div>
+            </div>
+            <div class="flex items-center justify-center space-x-6">
+                <a href="https://linkedin.com/in/istiak-adnan" target="_blank" rel="noopener noreferrer"
+                    class="text-gray-300 hover:text-white transition-colors text-lg flex items-center gap-2"
+                    aria-label="Visit LinkedIn Profile">
+                    <span class="text-3xl">🔗</span> View LinkedIn Profile
+                </a>
+            </div>
+            <p class="mt-12 text-gray-500 text-sm">© 2024 Md. Istiak Adnan. Designed with ❤️.</p>
+        </section>
+    </main>
+
+    <script>
+        const chartColors = {
+            primary: '#3D348B',
+            accent1: '#7678ED',
+            accent2: '#F7B801',
+            grid: 'rgba(0, 0, 0, 0.05)',
+            text: '#374151',
+            tooltipBg: '#ffffff'
+        };
+
+        function wrapLabel(label) {
+            const maxLineLength = 16;
+            if (label.length <= maxLineLength) {
+                return label;
+            }
+            const words = label.split(' ');
+            const lines = [];
+            let currentLine = '';
+            for (const word of words) {
+                if ((currentLine + ' ' + word).length > maxLineLength && currentLine.length > 0) {
+                    lines.push(currentLine);
+                    currentLine = word;
+                } else {
+                    currentLine = currentLine ? currentLine + ' ' + word : word;
+                }
+            }
+            lines.push(currentLine);
+            return lines;
+        }
+
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+                return label.join(' ');
+            } else {
+                return label;
+            }
+        };
+
+        const chartOptions = {
+            indexAxis: 'y',
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                x: {
+                    beginAtZero: true,
+                    max: 10,
+                    grid: {
+                        color: chartColors.grid
+                    },
+                    ticks: {
+                        color: chartColors.text,
+                    }
+                },
+                y: {
+                    grid: {
+                        display: false
+                    },
+                    ticks: {
+                        color: chartColors.text,
+                        font: {
+                            weight: '600'
+                        }
+                    }
+                }
+            },
+            plugins: {
+                legend: {
+                    display: false
+                },
+                tooltip: {
+                    backgroundColor: chartColors.tooltipBg,
+                    titleColor: chartColors.primary,
+                    bodyColor: chartColors.text,
+                    borderColor: chartColors.grid,
+                    borderWidth: 1,
+                    padding: 10,
+                    callbacks: {
+                        title: tooltipTitleCallback
+                    }
+                }
+            }
+        };
+
+        const technicalSkillsData = {
+            labels: ['MS Excel', 'MS PowerPoint', 'MS Word', 'C Programming', 'Basic Python', 'AutoCAD', 'SolidWorks', 'Basic Video Editing'].map(wrapLabel),
+            datasets: [{
+                label: 'Proficiency',
+                data: [9, 8, 7, 6, 5, 7, 8, 5],
+                backgroundColor: [
+                    '#3D348B', '#483D8B', '#53468B', '#5E4F8B', '#69588B', '#74618B', '#7678ED', '#817FEE'
+                ],
+                borderColor: 'white',
+                borderWidth: 2,
+                borderRadius: 4
+            }]
+        };
+
+        new Chart(document.getElementById('technicalSkillsChart'), {
+            type: 'bar',
+            data: technicalSkillsData,
+            options: chartOptions
+        });
+
+        const softSkillsData = {
+            labels: ['Problem Solving', 'Critical Thinking', 'Time Management', 'Team Leadership', 'Teamwork', 'Communication & Presentation', 'Market Research'].map(wrapLabel),
+            datasets: [{
+                label: 'Strength',
+                data: [9, 9, 8, 9, 8, 8, 7],
+                backgroundColor: [
+                    '#F7B801', '#F6B101', '#F5AA01', '#F4A301', '#F39C01', '#F29501', '#F18701'
+                ],
+                borderColor: 'white',
+                borderWidth: 2,
+                borderRadius: 4
+            }]
+        };
+
+        new Chart(document.getElementById('softSkillsChart'), {
+            type: 'bar',
+            data: softSkillsData,
+            options: chartOptions
+        });
+
+        const sections = document.querySelectorAll('.fade-in-section');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+        // Setup particles background
+        function setupParticlesBackground() {
+            tsParticles.load("particles-background", {
+                preset: "links",
+                background: {
+                    color: {
+                        value: "transparent" // Use the gradient from CSS
+                    }
+                },
+                particles: {
+                    number: {
+                        value: 100,
+                        density: {
+                            enable: true,
+                            value_area: 800
+                        }
+                    },
+                    color: {
+                        value: "#ffffff"
+                    },
+                    shape: {
+                        type: "circle"
+                    },
+                    opacity: {
+                        value: 0.7,
+                        random: true,
+                        anim: {
+                            enable: true,
+                            speed: 1,
+                            opacity_min: 0.1,
+                            sync: false
+                        }
+                    },
+                    size: {
+                        value: 2,
+                        random: true,
+                        anim: {
+                            enable: false
+                        }
+                    },
+                    links: {
+                        enable: true,
+                        distance: 150,
+                        color: "#ffffff",
+                        opacity: 0.4,
+                        width: 1
+                    },
+                    move: {
+                        enable: true,
+                        speed: 1,
+                        direction: "none",
+                        random: true,
+                        straight: false,
+                        out_mode: "out",
+                        bounce: false
+                    }
+                },
+                interactivity: {
+                    events: {
+                        onhover: {
+                            enable: true,
+                            mode: "repulse"
+                        },
+                        onclick: {
+                            enable: true,
+                            mode: "push"
+                        }
+                    },
+                    modes: {
+                        repulse: {
+                            distance: 100,
+                            duration: 0.4
+                        },
+                        push: {
+                            particles_nb: 4
+                        }
+                    }
+                }
+            });
+        }
+        // Hamburger меню toggle
+        const hamburgerBtn = document.getElementById('hamburger-btn');
+        const navMenu = document.getElementById('nav-menu');
+        hamburgerBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            hamburgerBtn.querySelector('.hamburger-icon').textContent = navMenu.classList.contains('active') ? '✕' : '☰';
+        });
+    </script>
+    <!-- AOS JS -->
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+    <!-- Scroll reavel -->
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <script>
+        // Initialize ScrollReveal and target elements
+        ScrollReveal().reveal('.reveal', {
+            distance: '50px',
+            duration: 1000,
+            easing: 'ease-in-out',
+            origin: 'bottom',
+            interval: 200,
+            reset: false, // set to true if you want it to animate again on re-scroll
+        });
+    </script>
+
+
+</body>
+
+</html>
