@@ -16,6 +16,23 @@
         onload="setupParticlesBackground()"></script>
 
     <style>
+        /* 
+  ==============================================
+  THE FIX FOR HORIZONTAL OVERFLOW (WHITE SPACE)
+  ==============================================
+  Add this to your main <style> tag.
+*/
+body {
+    /* This is the magic rule. It tells the browser:
+       "Do not allow anything to be wider than the screen.
+       If something is, just clip it and hide the horizontal scrollbar."
+    */
+    overflow-x: hidden;
+}
+        /* A temporary debugging tool - remove it when you're done! */
+/* {
+    border: 1px solid red !important;
+}*/
         @keyframes spin-slow {
             from {
                 transform: rotate(0deg);
@@ -1109,6 +1126,7 @@
 </body>
 
 </html>
+
 
 
 
