@@ -16,6 +16,30 @@
         onload="setupParticlesBackground()"></script>
 
     <style>
+        #typewriter-subtitle::after {
+            /* This creates the cursor */
+            content: '|';
+            font-weight: 200;
+            /* Makes the cursor thinner */
+            display: inline-block;
+
+            /* The blinking animation */
+            animation: blink-caret 0.75s step-end infinite;
+        }
+
+        /* The keyframe animation for the blink */
+        @keyframes blink-caret {
+
+            from,
+            to {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0;
+            }
+        }
+
         /* 
   ==============================================
   THE FIX FOR HORIZONTAL OVERFLOW (WHITE SPACE)
@@ -415,8 +439,9 @@
             <div class="hero-content">
                 <img src="images/Adnan Professional.jpg" alt="Adnan"
                     class="w-32 h-32 rounded-full mx-auto mb-4 object-cover">
-                <h1 class="text-4xl sm:text-5xl md:text-8xl font-black brand-text tracking-tighter mb-4">Md. Istiak
-                    Adnan</h1>
+                <h1 style="color: rgb(247, 216, 17);" id="typewriter-subtitle"
+                    class="text-xl sm:text-2xl md:text-4xl font-semibold mb-8"
+                    class="text-4xl sm:text-5xl md:text-8xl font-black brand-text tracking-tighter mb-4"></h1>
                 <h2 class="text-xl sm:text-2xl md:text-4xl font-semibold mb-8">Industrial & Production Engineer</h2>
                 <p class="text-base sm:text-lg max-w-2xl mx-auto mb-8">
                     A dedicated and analytical final-year Industrial and Production Engineering student from BUET, with
@@ -1355,6 +1380,30 @@
                     }
                 });
             });
+        });
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // --- Configuration ---
+            const targetElement = document.getElementById('typewriter-subtitle');
+            const textToType = 'Md. Istiak Adnan';
+            const typingSpeed = 50; // Time in milliseconds between each character
+
+            if (targetElement) {
+                let i = 0; // Current character index
+
+                function typeWriter() {
+                    if (i < textToType.length) {
+                        targetElement.innerHTML += textToType.charAt(i);
+                        i++;
+                        setTimeout(typeWriter, typingSpeed);
+                    }
+                }
+
+                // Start the animation
+                typeWriter();
+            }
         });
     </script>
 
