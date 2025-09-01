@@ -28,10 +28,7 @@
         .rotating-circle {
             animation: spin-slow 60s linear infinite;
         }
-    </style>
 
-
-    <style>
         /* Particle background styles */
         #particles-background {
             position: absolute;
@@ -107,23 +104,18 @@
             line-height: 1;
         }
 
-        #nav-menu.active {
-            visibility: visible;
-            opacity: 1;
-            transform: translateY(0);
-        }
-
+        /* --- EDITED: Simplified nav-menu styles for toggling --- */
         @media (max-width: 767px) {
             #nav-menu {
-                transform: translateY(-10px);
+                display: none;
+                /* Hide by default on mobile */
             }
 
             #nav-menu.active {
-                transform: translateY(0);
+                display: flex;
+                /* Show when active */
             }
         }
-
-
 
         body {
             font-family: 'Inter', sans-serif;
@@ -180,14 +172,6 @@
 
         .accent-text-2 {
             color: #F7B801;
-        }
-
-        .sticky-header {
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            background-color: #3D348B;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
         }
 
         /* Timeline adjustments for responsiveness */
@@ -307,43 +291,62 @@
 </head>
 
 <body class="antialiased">
-    <header class="sticky-header py-4 bg-[#3D348B] text-white">
-        <nav role="navigation" aria-label="Main navigation"
-            class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+    <!-- --- EDITED: Changed header to be fixed and centered content --- -->
+    <header class="fixed top-0 left-0 right-0 z-50 py-4 bg-[#3D348B] text-white shadow-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+            <!-- You can add a logo or brand name here if you like -->
+            <div class="text-xl font-bold">
+                <!-- e.g., <a href="#home">My Portfolio</a> -->
+            </div>
 
             <!-- Hamburger Menu (Mobile Only) -->
-            <button id="hamburger-btn" class="md:hidden text-white focus:outline-none text-3xl"
+            <button id="hamburger-btn" class="md:hidden text-white focus:outline-none text-3xl z-50"
                 aria-label="Toggle navigation menu">
                 ☰
             </button>
 
             <!-- Navigation Menu -->
-            <ul id="nav-menu" class="flex items-center justify-center flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-8 transition-all duration-300 ease-in-out
-               absolute md:static top-16 left-0 w-full md:w-auto bg-[#3D348B] md:bg-transparent p-4 md:p-0 z-50
-               invisible md:visible opacity-0 md:opacity-100">
+            <nav role="navigation" aria-label="Main navigation" class="hidden md:flex md:justify-center">
+                <ul id="nav-menu" class="md:flex md:items-center md:space-x-8">
+                    <li><a href="#home" class="text-white hover:text-gray-300 font-medium transition-colors">Home</a>
+                    </li>
+                    <li><a href="#about" class="text-white hover:text-gray-300 font-medium transition-colors">About
+                            Me</a></li>
+                    <li><a href="#experience"
+                            class="text-white hover:text-gray-300 font-medium transition-colors">Experience</a></li>
+                    <li><a href="#skills"
+                            class="text-white hover:text-gray-300 font-medium transition-colors">Skills</a></li>
+                    <li><a href="#projects"
+                            class="text-white hover:text-gray-300 font-medium transition-colors">Projects</a></li>
+                    <li><a href="#photos"
+                            class="text-white hover:text-gray-300 font-medium transition-colors">Photos</a></li>
+                    <li><a href="#achievements"
+                            class="text-white hover:text-gray-300 font-medium transition-colors">Achievements</a></li>
+                    <li><a href="#contact"
+                            class="text-white hover:text-gray-300 font-medium transition-colors">Contact</a></li>
+                </ul>
+            </nav>
 
-                <li><a href="#home" class="text-white hover:text-gray-300 font-medium transition-colors">Home</a></li>
-                <li><a href="#about" class="text-white hover:text-gray-300 font-medium transition-colors">About Me</a>
-                </li>
-                <li><a href="#experience"
-                        class="text-white hover:text-gray-300 font-medium transition-colors">Experience</a></li>
-                <li><a href="#skills" class="text-white hover:text-gray-300 font-medium transition-colors">Skills</a>
-                </li>
-                <li><a href="#projects"
-                        class="text-white hover:text-gray-300 font-medium transition-colors">Projects</a></li>
-                <li><a href="#photos" class="text-white hover:text-gray-300 font-medium transition-colors">Photos</a>
-                </li>
-                <li><a href="#achievements"
-                        class="text-white hover:text-gray-300 font-medium transition-colors">Achievements</a></li>
-                <li><a href="#contact" class="text-white hover:text-gray-300 font-medium transition-colors">Contact</a>
-                </li>
-            </ul>
+            <!-- Mobile Menu (overlay) -->
+            <div id="mobile-menu"
+                class="hidden absolute top-0 left-0 w-full h-screen bg-[#3D348B] flex-col items-center justify-center space-y-6">
+                <a href="#home" class="text-white text-2xl">Home</a>
+                <a href="#about" class="text-white text-2xl">About Me</a>
+                <a href="#experience" class="text-white text-2xl">Experience</a>
+                <a href="#skills" class="text-white text-2xl">Skills</a>
+                <a href="#projects" class="text-white text-2xl">Projects</a>
+                <a href="#photos" class="text-white text-2xl">Photos</a>
+                <a href="#achievements" class="text-white text-2xl">Achievements</a>
+                <a href="#contact" class="text-white text-2xl">Contact</a>
+            </div>
 
-        </nav>
+            <!-- This div is for spacing if you want a right-aligned item later -->
+            <div></div>
+        </div>
     </header>
 
-
-    <main>
+    <!-- --- EDITED: Added padding-top to main content to avoid being covered by the fixed header --- -->
+    <main class="pt-16">
         <section id="home" class="hero-background">
             <div id="particles-background"></div>
             <div class="hero-content">
@@ -354,7 +357,8 @@
                 <h2 class="text-xl sm:text-2xl md:text-4xl font-semibold mb-8">Industrial & Production Engineer</h2>
                 <p class="text-base sm:text-lg max-w-2xl mx-auto mb-8">
                     A dedicated and analytical final-year Industrial and Production Engineering student from BUET, with
-                    a strong foundation in process optimization, quality control, manufacturing and project management. Eager to drive
+                    a strong foundation in process optimization, quality control, manufacturing and project management.
+                    Eager to drive
                     efficiency and innovation.
                 </p>
                 <div class="flex items-center justify-center space-x-6">
@@ -376,10 +380,9 @@
                 data-aos-delay="500" data-aos-duration="1500">
                 <a href="#about" class="text-4xl text-white" aria-label="Scroll to About section">↓</a>
             </div>
-
-
         </section>
 
+        <!-- The rest of your sections remain unchanged -->
         <section id="about" class="py-20 px-4 sm:px-8 fade-in-section">
             <div class="max-w-5xl mx-auto">
                 <div class="text-center mb-12">
@@ -584,7 +587,8 @@
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <div class="border-l-4 border-red-500 p-6 bg-white rounded-r-lg shadow-sm">
-                        <h4 class="font-bold text-xl mb-2">Smart Real-Time Pill Dispensing and Packaging System using IoT and Embedded Systems</h4>
+                        <h4 class="font-bold text-xl mb-2">Smart Real-Time Pill Dispensing and Packaging System using
+                            IoT and Embedded Systems</h4>
                         <p class="text-gray-600 text-sm mb-2">Academic Project</p>
                         <p class="text-gray-700">Working in a team to develop an automated quality inspection device
                             tailored for the pharmaceutical industry. The project focuses on identifying packaging
@@ -630,8 +634,7 @@
                 </div>
                 <div class="photo-gallery grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                     <div class="rounded-lg overflow-hidden shadow-lg transform hover:scale-105 transition-transform">
-                        <img src="images/laferrari_rc.jpeg"
-                            class="w-full h-48 object-cover">
+                        <img src="images/laferrari_rc.jpeg" class="w-full h-48 object-cover">
                         <div class="p-4 bg-gray-50">
                             <p class="text-lg font-semibold text-gray-800">Project Snapshot</p>
                             <p class="text-sm text-gray-600">A glimpse into one of my engineering projects.</p>
@@ -984,13 +987,33 @@
                 }
             });
         }
-        // Hamburger меню toggle
+
+        // --- EDITED: Hamburger menu toggle logic ---
         const hamburgerBtn = document.getElementById('hamburger-btn');
-        const navMenu = document.getElementById('nav-menu');
+        const mobileMenu = document.getElementById('mobile-menu');
+
         hamburgerBtn.addEventListener('click', () => {
-            navMenu.classList.toggle('active');
-            hamburgerBtn.querySelector('.hamburger-icon').textContent = navMenu.classList.contains('active') ? '✕' : '☰';
+            const isMenuOpen = mobileMenu.classList.contains('hidden');
+            if (isMenuOpen) {
+                mobileMenu.classList.remove('hidden');
+                mobileMenu.classList.add('flex');
+                hamburgerBtn.innerHTML = '✕'; // Change to close icon
+            } else {
+                mobileMenu.classList.add('hidden');
+                mobileMenu.classList.remove('flex');
+                hamburgerBtn.innerHTML = '☰'; // Change back to hamburger icon
+            }
         });
+
+        // Close mobile menu when a link is clicked
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                mobileMenu.classList.remove('flex');
+                hamburgerBtn.innerHTML = '☰';
+            });
+        });
+
     </script>
     <!-- AOS JS -->
     <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
@@ -1011,11 +1034,6 @@
         });
     </script>
 
-
 </body>
 
-
 </html>
-
-
-
