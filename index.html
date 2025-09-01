@@ -22,13 +22,14 @@
   ==============================================
   Add this to your main <style> tag.
 */
-    body {
-    /* This is the magic rule. It tells the browser:
+        body {
+            /* This is the magic rule. It tells the browser:
        "Do not allow anything to be wider than the screen.
        If something is, just clip it and hide the horizontal scrollbar."
     */
-    overflow-x: hidden;
-}
+            overflow-x: hidden;
+        }
+
         /* A temporary debugging tool - remove it when you're done! 
 /* {
     border: 1px solid red !important;
@@ -45,44 +46,48 @@
 
         /* Add this to your main CSS file */
 
-.rotating-circle {
-    animation: rotate 30s linear infinite;
-    transform-style: preserve-3d;
-}
+        .rotating-circle {
+            animation: rotate 30s linear infinite;
+            transform-style: preserve-3d;
+        }
 
-@keyframes rotate {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
-}
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
 
-.icon-item {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin: -20px; /* Half of icon width/height to truly center it */
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
+            to {
+                transform: rotate(360deg);
+            }
+        }
 
-.icon-item i {
-    font-size: 2rem; /* 32px */
-    color: white;
-    opacity: 0.15; /* A slightly lower opacity for a more subtle background effect */
-    transition: opacity 0.3s ease, transform 0.3s ease;
-}
+        .icon-item {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin: -20px;
+            /* Half of icon width/height to truly center it */
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
 
-/* Optional: A subtle effect when the user's mouse is in the area */
-.rotating-circle:hover i {
-    opacity: 0.3;
-    transform: scale(1.1);
-}
+        .icon-item i {
+            font-size: 2rem;
+            /* 32px */
+            color: white;
+            opacity: 0.15;
+            /* A slightly lower opacity for a more subtle background effect */
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        /* Optional: A subtle effect when the user's mouse is in the area */
+        .rotating-circle:hover i {
+            opacity: 0.3;
+            transform: scale(1.1);
+        }
 
         /* Particle background styles */
         #particles-background {
@@ -373,6 +378,8 @@
                             class="text-white hover:text-gray-300 font-medium transition-colors">Skills</a></li>
                     <li><a href="#projects"
                             class="text-white hover:text-gray-300 font-medium transition-colors">Projects</a></li>
+                    <li><a href="#research"
+                            class="text-white hover:text-gray-300 font-medium transition-colors">Research</a></li>
                     <li><a href="#photos"
                             class="text-white hover:text-gray-300 font-medium transition-colors">Photos</a></li>
                     <li><a href="#achievements"
@@ -390,6 +397,7 @@
                 <a href="#experience" class="text-white text-2xl">Experience</a>
                 <a href="#skills" class="text-white text-2xl">Skills</a>
                 <a href="#projects" class="text-white text-2xl">Projects</a>
+                <a href="#research" class="text-white text-2xl">Research</a>
                 <a href="#photos" class="text-white text-2xl">Photos</a>
                 <a href="#achievements" class="text-white text-2xl">Achievements</a>
                 <a href="#contact" class="text-white text-2xl">Contact</a>
@@ -539,10 +547,10 @@
                             <h4 class="font-bold text-lg mb-2">Campus Ambassador, Three Zero Hackathon
                                 2025</h4>
                             <ul class="list-disc list-inside text-gray-700 text-sm">
-                                <li>Promoted the event at BUET and coordinated outreach activities as 
+                                <li>Promoted the event at BUET and coordinated outreach activities as
                                     the official Campus Ambassador.
                                 </li>
-                    
+
                             </ul>
                         </div>
                     </div>
@@ -777,6 +785,108 @@
             </div>
         </section>
 
+
+
+        <section id="research" class="py-20 px-4 sm:px-8 fade-in-section">
+            <div class="max-w-5xl mx-auto">
+                <!-- Section Header -->
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold brand-text mb-4">Research & Publications</h2>
+                    <p class="text-lg text-dark-300 max-w-3xl mx-auto">
+                        Below is a summary of my academic research and publications. Click on any title to expand and
+                        see more details.
+                    </p>
+                </div>
+
+                <!-- Accordion Container -->
+                <div class="space-y-4">
+
+                    <!-- Publication Item 1 -->
+                    <div class="accordion-item bg-slate-900/50 rounded-lg shadow-lg border border-slate-700">
+                        <button class="accordion-button flex justify-between items-center w-full p-5 text-left">
+                            <span class="text-xl font-semibold text-slate-100">Smart Real-time Monitoring and Control of
+                                Pill Dispensing and Packaging Process for Pharmaceutical Industries Using IoT and
+                                Embedded Systems</span>
+                            <!-- Arrow Icon -->
+                            <span
+                                class="accordion-arrow text-2xl text-slate-400 transform transition-transform duration-300">
+                                <i class="fa-solid fa-chevron-down"></i>
+                            </span>
+                        </button>
+                        <div class="accordion-content overflow-hidden max-h-0 transition-all duration-500 ease-in-out">
+                            <div class="p-5 border-t border-slate-700">
+                                <p class="text-gray-300 mb-4">
+                                    This research focused on developing an innovative IoT-based pill dispensing and
+                                    packaging system. By integrating Arduino and ESP32, the system achieves real-time
+                                    pill counting, precise weight measurement, and automated rejection of defective
+                                    bottles, significantly improving accuracy and operational efficiency in
+                                    pharmaceutical packaging.
+                                </p>
+                                <p class="mb-2"><strong class="text-slate-300">Authors:</strong> Md. Istiak Adnan, Dr.
+                                    John Doe</p>
+                                <p class="mb-4"><strong class="text-slate-300">Journal:</strong> International Journal
+                                    of Smart Systems, Vol. 5, Issue 2, 2025</p>
+                                <a href="#"
+                                    class="inline-block bg-purple-600 text-white font-bold py-2 px-4 rounded hover:bg-purple-700 transition-colors">
+                                    View Publication &rarr;
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Publication Item 2 -->
+                    <div class="accordion-item bg-slate-900/50 rounded-lg shadow-lg border border-slate-700">
+                        <button class="accordion-button flex justify-between items-center w-full p-5 text-left">
+                            <span class="text-xl font-semibold text-slate-100">
+                                IoT-Based Smart Conveyor System for Pill Packaging (Course Project)
+                            </span>
+                            <!-- Arrow Icon -->
+                            <span
+                                class="accordion-arrow text-2xl text-slate-400 transform transition-transform duration-300">
+                                <i class="fa-solid fa-chevron-down"></i>
+                            </span>
+                        </button>
+                        <div class="accordion-content overflow-hidden max-h-0 transition-all duration-500 ease-in-out">
+                            <div class="p-5 border-t border-slate-700">
+                                <p class="text-gray-300 mb-4">
+                                    This project automates pill dispensing and packaging in the pharmaceutical industry
+                                    to
+                                    minimize human error and improve efficiency. The system integrates IR sensors for
+                                    pill
+                                    counting and bottle detection, a load cell with HX711 for weight validation, servo
+                                    motors
+                                    for dispensing and rejection, and a DC motor-driven conveyor belt. An ESP32
+                                    microcontroller
+                                    coordinates all components and transmits real-time data (pill count, bottle count,
+                                    and weight)
+                                    to a dedicated server for monitoring.
+                                </p>
+                                <p class="mb-2"><strong class="text-slate-300">Course:</strong> IPE 419, Department of
+                                    IPE, BUET</p>
+                                <p class="mb-2"><strong class="text-slate-300">Supervisor:</strong> Dr. Nafis Ahmad</p>
+                                <p class="mb-4"><strong class="text-slate-300">Team Members:</strong> Md. Rakonuzzaman,
+                                    Md. Istiak Adnan,
+                                    Md. Sheum Rahman, Toufiqur Rahman, M. Sakib Arman Saki, Iqbal Hossain Maruf</p>
+                                <a href="https://ipe20-buet.top/groups/all_groups/b_3.html"
+                                    class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mb-2">
+                                    Project Overview
+                                </a>
+                                <a href="https://youtu.be/k48h_o7BPG4?si=o_r9_2MXHW77Ubsx"
+                                    class="inline-block bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+                                    Video Demonstration
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- Add more publications here by copying the structure above -->
+
+                </div>
+            </div>
+        </section>
+
+
         <section id="photos" class="py-20 px-4 sm:px-8 fade-in-section bg-white">
             <div class="max-w-6xl mx-auto">
                 <div class="text-center mb-12">
@@ -790,7 +900,8 @@
                         <img src="images/IoT-project.jpeg" class="w-full h-48 object-cover">
                         <div class="p-4 bg-gray-50">
                             <p class="text-lg font-semibold text-gray-800">IoT project</p>
-                            <p class="text-sm text-gray-600">Smart Real-Time Pill Dispensing and Packaging System using IoT </p>
+                            <p class="text-sm text-gray-600">Smart Real-Time Pill Dispensing and Packaging System using
+                                IoT </p>
                         </div>
                     </div>
                     <div class="rounded-lg overflow-hidden shadow-lg transform hover:scale-105 transition-transform">
@@ -805,7 +916,7 @@
                             class="w-full h-48 object-cover">
                         <div class="p-4 bg-gray-50">
                             <p class="text-lg font-semibold text-gray-800">PRAN-RFL Industrial Park </p>
-                            <p class="text-sm text-gray-600">A memorable moment was visiting PRAN-RFL Industrial Park 
+                            <p class="text-sm text-gray-600">A memorable moment was visiting PRAN-RFL Industrial Park
                                 and seeing large-scale industrial operations firsthand.</p>
                         </div>
                     </div>
@@ -857,7 +968,8 @@
                     <div class="bg-white p-6 rounded-lg shadow-md flex items-center">
                         <span class="text-4xl mr-4">📈</span>
                         <div>
-                            <p class="font-semibold text-xl">Lean & Quality Management, Six Sigma, Continuous Improvement, MTF Institute of Management, Technology and Finance</p>
+                            <p class="font-semibold text-xl">Lean & Quality Management, Six Sigma, Continuous
+                                Improvement, MTF Institute of Management, Technology and Finance</p>
                             <p class="text-gray-600">Udemy, Issued: July 2025 </p>
                         </div>
                     </div>
@@ -887,44 +999,44 @@
                 discuss how my skills and experience can benefit you and your team. Feel free to reach out!</p>
 
             <!-- Rotating Background START -->
-<div class="absolute inset-0 flex items-center justify-center z-0 pointer-events-none">
-    <div class="relative w-[500px] h-[500px] rotating-circle">
-        <!-- We use a wrapper for easier, more scalable positioning -->
-        <!-- Icon 1: Phone -->
-        <div class="icon-item" style="transform: rotate(0deg) translateY(-250px) rotate(0deg);">
-            <i class="fa-solid fa-phone"></i>
-        </div>
-        <!-- Icon 2: Email -->
-        <div class="icon-item" style="transform: rotate(45deg) translateY(-250px) rotate(-45deg);">
-            <i class="fa-solid fa-envelope"></i>
-        </div>
-        <!-- Icon 3: Paper Plane (Send) -->
-        <div class="icon-item" style="transform: rotate(90deg) translateY(-250px) rotate(-90deg);">
-            <i class="fa-solid fa-paper-plane"></i>
-        </div>
-        <!-- Icon 4: Location Pin -->
-        <div class="icon-item" style="transform: rotate(135deg) translateY(-250px) rotate(-135deg);">
-            <i class="fa-solid fa-map-marker-alt"></i>
-        </div>
-        <!-- Icon 5: Link -->
-        <div class="icon-item" style="transform: rotate(180deg) translateY(-250px) rotate(-180deg);">
-            <i class="fa-solid fa-link"></i>
-        </div>
-        <!-- Icon 6: User/Profile -->
-        <div class="icon-item" style="transform: rotate(225deg) translateY(-250px) rotate(-225deg);">
-            <i class="fa-solid fa-user"></i>
-        </div>
-        <!-- Icon 7: Chat Bubble -->
-        <div class="icon-item" style="transform: rotate(270deg) translateY(-250px) rotate(-270deg);">
-            <i class="fa-solid fa-comment-dots"></i>
-        </div>
-        <!-- Icon 8: At Symbol -->
-        <div class="icon-item" style="transform: rotate(315deg) translateY(-250px) rotate(-315deg);">
-            <i class="fa-solid fa-at"></i>
-        </div>
-    </div>
-</div>
-<!-- Rotating Background END -->
+            <div class="absolute inset-0 flex items-center justify-center z-0 pointer-events-none">
+                <div class="relative w-[500px] h-[500px] rotating-circle">
+                    <!-- We use a wrapper for easier, more scalable positioning -->
+                    <!-- Icon 1: Phone -->
+                    <div class="icon-item" style="transform: rotate(0deg) translateY(-250px) rotate(0deg);">
+                        <i class="fa-solid fa-phone"></i>
+                    </div>
+                    <!-- Icon 2: Email -->
+                    <div class="icon-item" style="transform: rotate(45deg) translateY(-250px) rotate(-45deg);">
+                        <i class="fa-solid fa-envelope"></i>
+                    </div>
+                    <!-- Icon 3: Paper Plane (Send) -->
+                    <div class="icon-item" style="transform: rotate(90deg) translateY(-250px) rotate(-90deg);">
+                        <i class="fa-solid fa-paper-plane"></i>
+                    </div>
+                    <!-- Icon 4: Location Pin -->
+                    <div class="icon-item" style="transform: rotate(135deg) translateY(-250px) rotate(-135deg);">
+                        <i class="fa-solid fa-map-marker-alt"></i>
+                    </div>
+                    <!-- Icon 5: Link -->
+                    <div class="icon-item" style="transform: rotate(180deg) translateY(-250px) rotate(-180deg);">
+                        <i class="fa-solid fa-link"></i>
+                    </div>
+                    <!-- Icon 6: User/Profile -->
+                    <div class="icon-item" style="transform: rotate(225deg) translateY(-250px) rotate(-225deg);">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+                    <!-- Icon 7: Chat Bubble -->
+                    <div class="icon-item" style="transform: rotate(270deg) translateY(-250px) rotate(-270deg);">
+                        <i class="fa-solid fa-comment-dots"></i>
+                    </div>
+                    <!-- Icon 8: At Symbol -->
+                    <div class="icon-item" style="transform: rotate(315deg) translateY(-250px) rotate(-315deg);">
+                        <i class="fa-solid fa-at"></i>
+                    </div>
+                </div>
+            </div>
+            <!-- Rotating Background END -->
 
             <!-- Hero Content -->
             <div class="hero-content relative z-10">
@@ -1219,17 +1331,33 @@
         });
     </script>
 
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const accordionButtons = document.querySelectorAll('.accordion-button');
+
+            accordionButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const accordionContent = button.nextElementSibling;
+                    const accordionArrow = button.querySelector('.accordion-arrow');
+
+                    // Toggle active class for styling
+                    button.classList.toggle('active');
+
+                    if (button.classList.contains('active')) {
+                        // Open the accordion
+                        accordionContent.style.maxHeight = accordionContent.scrollHeight + 'px';
+                        accordionArrow.style.transform = 'rotate(180deg)';
+                    } else {
+                        // Close the accordion
+                        accordionContent.style.maxHeight = '0px';
+                        accordionArrow.style.transform = 'rotate(0deg)';
+                    }
+                });
+            });
+        });
+    </script>
+
 </body>
 
 </html>
-
-
-
-
-
-
-
-
-
-
-
