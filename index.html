@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 
 <head>
     <meta charset="UTF-8">
@@ -21,8 +21,10 @@
             /* Prevent horizontal overflow globally */
         }
 
+
         #typewriter-subtitle::after {
-            content: '|';
+            /* This creates the cursor */
+            content: '';
             font-weight: 200;
             display: inline-block;
             animation: blink-caret 0.75s step-end infinite;
@@ -40,9 +42,9 @@
             }
         }
 
+        /* Prevent horizontal overflow */
         body {
             overflow-x: hidden;
-            /* Prevent horizontal scroll */
             font-family: 'Inter', sans-serif;
             background-color: #f0f2f5;
             color: #1a202c;
@@ -98,6 +100,7 @@
             transform: scale(1.1);
         }
 
+        /* Particle background */
         #particles-background {
             position: absolute;
             top: 0;
@@ -176,97 +179,32 @@
             color: #d1d5db;
         }
 
-        /* ===== FIX HEADER MOBILE OVERFLOW ===== */
-        header {
-            width: 100vw;
-            /* Full viewport width to prevent scroll */
-            left: 0;
-            position: fixed;
-            top: 0;
-            z-index: 50;
-            background-color: #3D348B;
-            overflow-x: hidden;
-            /* Prevent header from overflowing */
+        /* Mobile Menu Overlay */
+        #mobile-menu {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            space-y: 8;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.5s ease-in-out;
         }
 
-        header .container {
-            max-width: 100%;
-            margin: 0 auto;
+        #mobile-menu.active {
+            opacity: 1;
+            pointer-events: auto;
         }
 
-        /* Mobile menu button */
-        .mobile-menu-button {
-            display: none;
-            background: none;
-            border: none;
-            cursor: pointer;
+        .mobile-link {
+            color: white;
+            font-size: 1.75rem;
+            font-weight: 600;
+            transition: color 0.3s;
         }
 
-        @media (max-width: 768px) {
-            .mobile-menu-button {
-                display: block;
-            }
-
-            /* Mobile menu overlay */
-            #mobile-menu {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                width: 100vw;
-                /* Full viewport width */
-                height: 100vh;
-                /* Full screen height */
-                top: 0;
-                left: 0;
-                position: fixed;
-                background-color: #1F2937;
-                overflow-x: hidden;
-                /* Prevent horizontal scroll */
-                z-index: 49;
-                opacity: 0;
-                pointer-events: none;
-                transition: opacity 0.3s ease-in-out;
-            }
-
-            #mobile-menu.active {
-                opacity: 1;
-                pointer-events: auto;
-            }
-
-            .nav-links {
-                display: none;
-                flex-direction: column;
-                position: absolute;
-                top: 64px;
-                left: 0;
-                width: 100%;
-                background-color: #1F2937;
-                padding-bottom: 1rem;
-            }
-
-            .nav-links.active {
-                display: flex;
-            }
-
-            /* Project details */
-            .project-details {
-                max-height: 0;
-                overflow: hidden;
-                transition: max-height 0.5s ease-in-out;
-            }
-
-            .project-details.active {
-                max-height: 2000px;
-            }
-
-            .project-details img {
-                max-width: 80%;
-                height: auto;
-                object-fit: contain;
-                display: block;
-                margin: 0 auto;
-            }
+        .mobile-link:hover {
+            color: #d1d5db;
         }
 
         /* ===============================
@@ -323,7 +261,60 @@
             color: #F7B801;
         }
 
-        /* Hero background */
+        /* Timeline adjustments */
+        .timeline-date-mobile {
+            text-align: left;
+            margin-bottom: 0.5rem;
+            color: #3D348B;
+            font-weight: 700;
+        }
+
+        .timeline-content-mobile {
+            width: 100%;
+            max-width: 100%;
+            padding: 0 1rem;
+        }
+
+        .timeline-content-mobile img {
+            width: 100%;
+            height: auto;
+        }
+
+        @media (min-width: 768px) {
+            .timeline-item-container {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-bottom: 3rem;
+            }
+
+            .timeline-date-desktop-right {
+                text-align: right;
+                padding-right: 2rem;
+            }
+
+            .timeline-date-desktop-left {
+                text-align: left;
+                padding-left: 2rem;
+            }
+
+            .timeline-content-desktop {
+                width: 40%;
+                max-width: 400px;
+            }
+        }
+
+        @media (max-width: 320px) {
+            .timeline-content-mobile {
+                max-width: 90%;
+            }
+
+            .timeline-date-mobile {
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Hero section background image */
         .hero-background {
             background-image: url('/images/alone.jpeg');
             background-size: cover;
@@ -360,6 +351,7 @@
             color: white;
         }
 
+        /* Responsive hero text */
         @media (max-width: 640px) {
             .hero-background h1 {
                 font-size: 2.5rem;
@@ -372,7 +364,10 @@
             .hero-background p {
                 font-size: 0.9rem;
             }
+        }
 
+        /* Photo gallery */
+        @media (max-width: 640px) {
             .photo-gallery {
                 grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
             }
@@ -383,9 +378,50 @@
                 grid-template-columns: repeat(5, 1fr);
             }
         }
+
+        /* ===============================
+       MOBILE FIXES FROM FRIEND
+    ================================ */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 64px;
+                left: 0;
+                width: 100%;
+                background-color: #1F2937;
+                padding-bottom: 1rem;
+                z-index: 50;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .mobile-menu-button {
+                display: block;
+            }
+
+            .project-details {
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.5s ease-in-out;
+            }
+
+            .project-details.active {
+                max-height: 2000px;
+            }
+
+            .project-details img {
+                max-width: 80%;
+                height: auto;
+                object-fit: contain;
+                display: block;
+                margin: 0 auto;
+            }
+        }
     </style>
-
-
 
 
 </head>
@@ -394,8 +430,7 @@
     <!-- --- EDITED: Changed header to be fixed and centered content --- -->
     <header class="sticky top-0 z-50 bg-[#3D348B] shadow-md backdrop-blur-md bg-opacity-90">
 
-        <div class="w-full max-w-full mx-auto px-4 flex items-center justify-between">
-
+        <div class="max-w-7xl mx-auto flex justify-between items-center h-16 px-4 sm:px-6 lg:px-8">
 
             <!-- Brand Name -->
             <a href="#home" class="text-xl sm:text-2xl font-bold whitespace-nowrap">
@@ -605,13 +640,17 @@
                     </p>
                 </div>
                 <div class="relative">
-                    <div class="absolute left-1/2 -translate-x-1/2 h-full w-0.5 brand-bg rounded"></div>
+                    <div class="absolute left-1/2 -translate-x-1/2 h-full w-1 brand-bg rounded"></div>
                     <div class="timeline-item-container relative mb-12">
                         <div
                             class="absolute left-1/2 -translate-x-1/2 -translate-y-1/2 w-8 h-8 rounded-full accent-bg-1 border-4 border-white z-20">
                         </div>
                         <div class="w-full md:w-5/12 text-left md:text-right md:pr-8 md:order-1">
-                            <p class="text-xl font-bold brand-text timeline-date-mobile">May 2023 - Present</p>
+                            <p class="text-sm md:text-lg font-bold brand-text timeline-date-mobile">May 2023 - Present
+                            </p>
+
+
+
                         </div>
                         <div
                             class="timeline-content-mobile md:timeline-content-desktop md:w-5/12 mt-4 md:mt-0 p-6 bg-white rounded-lg shadow-lg md:order-2">
@@ -628,7 +667,9 @@
                             class="absolute left-1/2 -translate-x-1/2 -translate-y-1/2 w-8 h-8 rounded-full accent-bg-2 border-4 border-white z-20">
                         </div>
                         <div class="w-full md:w-5/12 text-left md:text-left md:pl-8 md:order-2">
-                            <p class="text-xl font-bold brand-text timeline-date-mobile">Jun 2025 – Jul 2025</p>
+                            <p class="text-sm md:text-lg font-bold brand-text timeline-date-mobile">Jun 2025 – Jul 2025
+                            </p>
+
                         </div>
                         <div
                             class="timeline-content-mobile md:timeline-content-desktop md:w-5/12 mt-4 md:mt-0 p-6 bg-white rounded-lg shadow-lg md:order-1">
@@ -647,7 +688,8 @@
                             class="absolute left-1/2 -translate-x-1/2 -translate-y-1/2 w-8 h-8 rounded-full accent-bg-3 border-4 border-white z-20">
                         </div>
                         <div class="w-full md:w-5/12 text-left md:text-right md:pr-8 md:order-1">
-                            <p class="text-xl font-bold brand-text timeline-date-mobile">Oct 2024 - Nov 2024</p>
+                            <p class="text-sm md:text-lg font-bold brand-text timeline-date-mobile">Oct 2024 - Nov 2024
+                            </p>
                         </div>
                         <div
                             class="timeline-content-mobile md:timeline-content-desktop md:w-5/12 mt-4 md:mt-0 p-6 bg-white rounded-lg shadow-lg md:order-2">
@@ -666,7 +708,8 @@
                             class="absolute left-1/2 -translate-x-1/2 -translate-y-1/2 w-8 h-8 rounded-full accent-bg-1 border-4 border-white z-20">
                         </div>
                         <div class="w-full md:w-5/12 text-left md:text-left md:pl-8 md:order-2">
-                            <p class="text-xl font-bold brand-text timeline-date-mobile">Jun 2024</p>
+                            <p class="text-sm md:text-lg font-bold brand-text timeline-date-mobile">Jun 2024
+                            </p>
                         </div>
                         <div
                             class="timeline-content-mobile md:timeline-content-desktop md:w-5/12 mt-4 md:mt-0 p-6 bg-white rounded-lg shadow-lg md:order-1">
@@ -683,7 +726,8 @@
                             class="absolute left-1/2 -translate-x-1/2 -translate-y-1/2 w-8 h-8 rounded-full accent-bg-2 border-4 border-white z-20">
                         </div>
                         <div class="w-full md:w-5/12 text-left md:text-right md:pr-8 md:order-1">
-                            <p class="text-xl font-bold brand-text timeline-date-mobile">Aug 2024</p>
+                            <p class="text-sm md:text-lg font-bold brand-text timeline-date-mobile">Aug 2024
+                            </p>
                         </div>
                         <div
                             class="timeline-content-mobile md:timeline-content-desktop md:w-5/12 mt-4 md:mt-0 p-6 bg-white rounded-lg shadow-lg md:order-2">
