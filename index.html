@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -16,8 +16,12 @@
         onload="setupParticlesBackground()"></script>
 
     <style>
+        html {
+            overflow-x: hidden;
+            /* Prevent horizontal overflow globally */
+        }
+
         #typewriter-subtitle::after {
-            /* This creates the cursor */
             content: '|';
             font-weight: 200;
             display: inline-block;
@@ -36,9 +40,9 @@
             }
         }
 
-        /* Prevent horizontal overflow */
         body {
             overflow-x: hidden;
+            /* Prevent horizontal scroll */
             font-family: 'Inter', sans-serif;
             background-color: #f0f2f5;
             color: #1a202c;
@@ -94,7 +98,6 @@
             transform: scale(1.1);
         }
 
-        /* Particle background */
         #particles-background {
             position: absolute;
             top: 0;
@@ -173,32 +176,97 @@
             color: #d1d5db;
         }
 
-        /* Mobile Menu Overlay */
-        #mobile-menu {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            space-y: 8;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.5s ease-in-out;
+        /* ===== FIX HEADER MOBILE OVERFLOW ===== */
+        header {
+            width: 100vw;
+            /* Full viewport width to prevent scroll */
+            left: 0;
+            position: fixed;
+            top: 0;
+            z-index: 50;
+            background-color: #3D348B;
+            overflow-x: hidden;
+            /* Prevent header from overflowing */
         }
 
-        #mobile-menu.active {
-            opacity: 1;
-            pointer-events: auto;
+        header .container {
+            max-width: 100%;
+            margin: 0 auto;
         }
 
-        .mobile-link {
-            color: white;
-            font-size: 1.75rem;
-            font-weight: 600;
-            transition: color 0.3s;
+        /* Mobile menu button */
+        .mobile-menu-button {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
         }
 
-        .mobile-link:hover {
-            color: #d1d5db;
+        @media (max-width: 768px) {
+            .mobile-menu-button {
+                display: block;
+            }
+
+            /* Mobile menu overlay */
+            #mobile-menu {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                width: 100vw;
+                /* Full viewport width */
+                height: 100vh;
+                /* Full screen height */
+                top: 0;
+                left: 0;
+                position: fixed;
+                background-color: #1F2937;
+                overflow-x: hidden;
+                /* Prevent horizontal scroll */
+                z-index: 49;
+                opacity: 0;
+                pointer-events: none;
+                transition: opacity 0.3s ease-in-out;
+            }
+
+            #mobile-menu.active {
+                opacity: 1;
+                pointer-events: auto;
+            }
+
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 64px;
+                left: 0;
+                width: 100%;
+                background-color: #1F2937;
+                padding-bottom: 1rem;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            /* Project details */
+            .project-details {
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.5s ease-in-out;
+            }
+
+            .project-details.active {
+                max-height: 2000px;
+            }
+
+            .project-details img {
+                max-width: 80%;
+                height: auto;
+                object-fit: contain;
+                display: block;
+                margin: 0 auto;
+            }
         }
 
         /* ===============================
@@ -255,8 +323,7 @@
             color: #F7B801;
         }
 
-
-        /* Hero section background image */
+        /* Hero background */
         .hero-background {
             background-image: url('/images/alone.jpeg');
             background-size: cover;
@@ -293,7 +360,6 @@
             color: white;
         }
 
-        /* Responsive hero text */
         @media (max-width: 640px) {
             .hero-background h1 {
                 font-size: 2.5rem;
@@ -306,10 +372,7 @@
             .hero-background p {
                 font-size: 0.9rem;
             }
-        }
 
-        /* Photo gallery */
-        @media (max-width: 640px) {
             .photo-gallery {
                 grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
             }
@@ -320,50 +383,8 @@
                 grid-template-columns: repeat(5, 1fr);
             }
         }
-
-        /* ===============================
-       MOBILE FIXES FROM FRIEND
-    ================================ */
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-                flex-direction: column;
-                position: absolute;
-                top: 64px;
-                left: 0;
-                width: 100%;
-                background-color: #1F2937;
-                padding-bottom: 1rem;
-                z-index: 50;
-            }
-
-            .nav-links.active {
-                display: flex;
-            }
-
-            .mobile-menu-button {
-                display: block;
-            }
-
-            .project-details {
-                max-height: 0;
-                overflow: hidden;
-                transition: max-height 0.5s ease-in-out;
-            }
-
-            .project-details.active {
-                max-height: 2000px;
-            }
-
-            .project-details img {
-                max-width: 80%;
-                height: auto;
-                object-fit: contain;
-                display: block;
-                margin: 0 auto;
-            }
-        }
     </style>
+
 
 
 
@@ -373,7 +394,8 @@
     <!-- --- EDITED: Changed header to be fixed and centered content --- -->
     <header class="sticky top-0 z-50 bg-[#3D348B] shadow-md backdrop-blur-md bg-opacity-90">
 
-        <div class="max-w-7xl mx-auto flex justify-between items-center h-16 px-4 sm:px-6 lg:px-8">
+        <div class="w-full max-w-full mx-auto px-4 flex items-center justify-between">
+
 
             <!-- Brand Name -->
             <a href="#home" class="text-xl sm:text-2xl font-bold whitespace-nowrap">
