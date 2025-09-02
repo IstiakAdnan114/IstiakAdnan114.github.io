@@ -255,7 +255,7 @@
             color: #F7B801;
         }
 
-        /* Timeline adjustments */
+        /* Timeline adjustments for responsiveness */
         .timeline-date-mobile {
             text-align: left;
             margin-bottom: 0.5rem;
@@ -264,14 +264,12 @@
         }
 
         .timeline-content-mobile {
+            margin: 0 auto;
             width: 100%;
             max-width: 100%;
+            /* allow full width on small devices */
             padding: 0 1rem;
-        }
-
-        .timeline-content-mobile img {
-            width: 100%;
-            height: auto;
+            /* small padding for breathing space */
         }
 
         @media (min-width: 768px) {
@@ -298,15 +296,34 @@
             }
         }
 
-        @media (max-width: 320px) {
-            .timeline-content-mobile {
-                max-width: 90%;
+        /* Small mobile screens (≤ 640px) */
+        @media (max-width: 640px) {
+            .timeline-item-container {
+                flex-direction: column;
+                /* stack vertically instead of side by side */
+                text-align: center;
+                margin-bottom: 2rem;
             }
 
             .timeline-date-mobile {
-                font-size: 0.9rem;
+                font-size: 0.85rem;
+                /* slightly smaller text */
+                margin-bottom: 0.25rem;
             }
         }
+
+        /* Extra small devices (≤ 320px) */
+        @media (max-width: 320px) {
+            .timeline-content-mobile {
+                max-width: 95%;
+                padding: 0 0.5rem;
+            }
+
+            .timeline-date-mobile {
+                font-size: 0.8rem;
+            }
+        }
+
 
         /* Hero section background image */
         .hero-background {
@@ -1229,308 +1246,214 @@
     </main>
 
     <script>
-        const chartColors = {
-            primary: '#3D348B',
-            accent1: '#7678ED',
-            accent2: '#F7B801',
-            grid: 'rgba(0, 0, 0, 0.05)',
-            text: '#374151',
-            tooltipBg: '#ffffff'
-        };
+        window.onload = function () {
+            /* ===============================
+               Chart.js Setup
+            =============================== */
+            const chartColors = {
+                primary: '#3D348B',
+                accent1: '#7678ED',
+                accent2: '#F7B801',
+                grid: 'rgba(0, 0, 0, 0.05)',
+                text: '#374151',
+                tooltipBg: '#ffffff'
+            };
 
-        function wrapLabel(label) {
-            const maxLineLength = 16;
-            if (label.length <= maxLineLength) {
-                return label;
-            }
-            const words = label.split(' ');
-            const lines = [];
-            let currentLine = '';
-            for (const word of words) {
-                if ((currentLine + ' ' + word).length > maxLineLength && currentLine.length > 0) {
-                    lines.push(currentLine);
-                    currentLine = word;
-                } else {
-                    currentLine = currentLine ? currentLine + ' ' + word : word;
-                }
-            }
-            lines.push(currentLine);
-            return lines;
-        }
-
-        const tooltipTitleCallback = (tooltipItems) => {
-            const item = tooltipItems[0];
-            let label = item.chart.data.labels[item.dataIndex];
-            if (Array.isArray(label)) {
-                return label.join(' ');
-            } else {
-                return label;
-            }
-        };
-
-        const chartOptions = {
-            indexAxis: 'y',
-            responsive: true,
-            maintainAspectRatio: false,
-            scales: {
-                x: {
-                    beginAtZero: true,
-                    max: 10,
-                    grid: {
-                        color: chartColors.grid
-                    },
-                    ticks: {
-                        color: chartColors.text,
+            function wrapLabel(label) {
+                const maxLineLength = 16;
+                if (label.length <= maxLineLength) return label;
+                const words = label.split(' ');
+                const lines = [];
+                let currentLine = '';
+                for (const word of words) {
+                    if ((currentLine + ' ' + word).length > maxLineLength && currentLine.length > 0) {
+                        lines.push(currentLine);
+                        currentLine = word;
+                    } else {
+                        currentLine = currentLine ? currentLine + ' ' + word : word;
                     }
-                },
-                y: {
-                    grid: {
-                        display: false
+                }
+                lines.push(currentLine);
+                return lines;
+            }
+
+            const tooltipTitleCallback = (tooltipItems) => {
+                const item = tooltipItems[0];
+                let label = item.chart.data.labels[item.dataIndex];
+                return Array.isArray(label) ? label.join(' ') : label;
+            };
+
+            const chartOptions = {
+                indexAxis: 'y',
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                        max: 10,
+                        grid: { color: chartColors.grid },
+                        ticks: { color: chartColors.text }
                     },
-                    ticks: {
-                        color: chartColors.text,
-                        font: {
-                            weight: '600'
+                    y: {
+                        grid: { display: false },
+                        ticks: {
+                            color: chartColors.text,
+                            font: { weight: '600' }
                         }
                     }
-                }
-            },
-            plugins: {
-                legend: {
-                    display: false
                 },
-                tooltip: {
-                    backgroundColor: chartColors.tooltipBg,
-                    titleColor: chartColors.primary,
-                    bodyColor: chartColors.text,
-                    borderColor: chartColors.grid,
-                    borderWidth: 1,
-                    padding: 10,
-                    callbacks: {
-                        title: tooltipTitleCallback
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        backgroundColor: chartColors.tooltipBg,
+                        titleColor: chartColors.primary,
+                        bodyColor: chartColors.text,
+                        borderColor: chartColors.grid,
+                        borderWidth: 1,
+                        padding: 10,
+                        callbacks: { title: tooltipTitleCallback }
                     }
                 }
-            }
-        };
+            };
 
-        const technicalSkillsData = {
-            labels: ['MS Excel', 'MS PowerPoint', 'MS Word', 'C Programming', 'Basic Python', 'AutoCAD', 'SolidWorks', 'Basic Video Editing'].map(wrapLabel),
-            datasets: [{
-                label: 'Proficiency',
-                data: [9, 8, 7, 6, 5, 7, 8, 5],
-                backgroundColor: [
-                    '#3D348B', '#483D8B', '#53468B', '#5E4F8B', '#69588B', '#74618B', '#7678ED', '#817FEE'
-                ],
-                borderColor: 'white',
-                borderWidth: 2,
-                borderRadius: 4
-            }]
-        };
+            const technicalSkillsData = {
+                labels: ['MS Excel', 'MS PowerPoint', 'MS Word', 'C Programming', 'Basic Python', 'AutoCAD', 'SolidWorks', 'Basic Video Editing'].map(wrapLabel),
+                datasets: [{
+                    label: 'Proficiency',
+                    data: [9, 8, 7, 6, 5, 7, 8, 5],
+                    backgroundColor: [
+                        '#3D348B', '#483D8B', '#53468B', '#5E4F8B',
+                        '#69588B', '#74618B', '#7678ED', '#817FEE'
+                    ],
+                    borderColor: 'white',
+                    borderWidth: 2,
+                    borderRadius: 4
+                }]
+            };
 
-        new Chart(document.getElementById('technicalSkillsChart'), {
-            type: 'bar',
-            data: technicalSkillsData,
-            options: chartOptions
-        });
-
-        const softSkillsData = {
-            labels: ['Problem Solving', 'Critical Thinking', 'Time Management', 'Team Leadership', 'Teamwork', 'Communication & Presentation', 'Market Research'].map(wrapLabel),
-            datasets: [{
-                label: 'Strength',
-                data: [9, 9, 8, 9, 8, 8, 7],
-                backgroundColor: [
-                    '#F7B801', '#F6B101', '#F5AA01', '#F4A301', '#F39C01', '#F29501', '#F18701'
-                ],
-                borderColor: 'white',
-                borderWidth: 2,
-                borderRadius: 4
-            }]
-        };
-
-        new Chart(document.getElementById('softSkillsChart'), {
-            type: 'bar',
-            data: softSkillsData,
-            options: chartOptions
-        });
-
-        const sections = document.querySelectorAll('.fade-in-section');
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('is-visible');
-                    observer.unobserve(entry.target);
-                }
+            new Chart(document.getElementById('technicalSkillsChart'), {
+                type: 'bar',
+                data: technicalSkillsData,
+                options: chartOptions
             });
-        }, {
-            threshold: 0.1
-        });
-        sections.forEach(section => {
-            observer.observe(section);
-        });
-        // Setup particles background
-        function setupParticlesBackground() {
+
+            const softSkillsData = {
+                labels: ['Problem Solving', 'Critical Thinking', 'Time Management', 'Team Leadership', 'Teamwork', 'Communication & Presentation', 'Market Research'].map(wrapLabel),
+                datasets: [{
+                    label: 'Strength',
+                    data: [9, 9, 8, 9, 8, 8, 7],
+                    backgroundColor: [
+                        '#F7B801', '#F6B101', '#F5AA01', '#F4A301',
+                        '#F39C01', '#F29501', '#F18701'
+                    ],
+                    borderColor: 'white',
+                    borderWidth: 2,
+                    borderRadius: 4
+                }]
+            };
+
+            new Chart(document.getElementById('softSkillsChart'), {
+                type: 'bar',
+                data: softSkillsData,
+                options: chartOptions
+            });
+
+            /* ===============================
+               Fade-In Sections
+            =============================== */
+            const sections = document.querySelectorAll('.fade-in-section');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+            sections.forEach(section => observer.observe(section));
+
+            /* ===============================
+               Particles Background
+            =============================== */
             tsParticles.load("particles-background", {
                 preset: "links",
-                background: {
-                    color: {
-                        value: "transparent" // Use the gradient from CSS
-                    }
-                },
+                background: { color: { value: "transparent" } },
                 particles: {
-                    number: {
-                        value: 100,
-                        density: {
-                            enable: true,
-                            value_area: 800
-                        }
-                    },
-                    color: {
-                        value: "#ffffff"
-                    },
-                    shape: {
-                        type: "circle"
-                    },
+                    number: { value: 100, density: { enable: true, value_area: 800 } },
+                    color: { value: "#ffffff" },
+                    shape: { type: "circle" },
                     opacity: {
-                        value: 0.7,
-                        random: true,
-                        anim: {
-                            enable: true,
-                            speed: 1,
-                            opacity_min: 0.1,
-                            sync: false
-                        }
+                        value: 0.7, random: true,
+                        anim: { enable: true, speed: 1, opacity_min: 0.1 }
                     },
-                    size: {
-                        value: 2,
-                        random: true,
-                        anim: {
-                            enable: false
-                        }
-                    },
-                    links: {
-                        enable: true,
-                        distance: 150,
-                        color: "#ffffff",
-                        opacity: 0.4,
-                        width: 1
-                    },
-                    move: {
-                        enable: true,
-                        speed: 1,
-                        direction: "none",
-                        random: true,
-                        straight: false,
-                        out_mode: "out",
-                        bounce: false
-                    }
+                    size: { value: 2, random: true },
+                    links: { enable: true, distance: 150, color: "#ffffff", opacity: 0.4, width: 1 },
+                    move: { enable: true, speed: 1, random: true, out_mode: "out" }
                 },
                 interactivity: {
                     events: {
-                        onhover: {
-                            enable: true,
-                            mode: "repulse"
-                        },
-                        onclick: {
-                            enable: true,
-                            mode: "push"
-                        }
+                        onhover: { enable: true, mode: "repulse" },
+                        onclick: { enable: true, mode: "push" }
                     },
                     modes: {
-                        repulse: {
-                            distance: 100,
-                            duration: 0.4
-                        },
-                        push: {
-                            particles_nb: 4
-                        }
+                        repulse: { distance: 100, duration: 0.4 },
+                        push: { particles_nb: 4 }
                     }
                 }
             });
-        }
 
-        // --- EDITED: Hamburger menu toggle logic ---
-        const hamburgerBtn = document.getElementById('hamburger-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-
-        hamburgerBtn.addEventListener('click', () => {
-            const isMenuOpen = mobileMenu.classList.contains('hidden');
-            if (isMenuOpen) {
-                mobileMenu.classList.remove('hidden');
-                mobileMenu.classList.add('flex');
-                hamburgerBtn.innerHTML = '✕'; // Change to close icon
-            } else {
-                mobileMenu.classList.add('hidden');
-                mobileMenu.classList.remove('flex');
-                hamburgerBtn.innerHTML = '☰'; // Change back to hamburger icon
-            }
-        });
-
-        // Close mobile menu when a link is clicked
-        document.querySelectorAll('#mobile-menu a').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.add('hidden');
-                mobileMenu.classList.remove('flex');
-                hamburgerBtn.innerHTML = '☰';
+            /* ===============================
+               Hamburger Menu
+            =============================== */
+            const hamburgerBtn = document.getElementById('hamburger-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            hamburgerBtn.addEventListener('click', () => {
+                const isMenuOpen = mobileMenu.classList.contains('hidden');
+                if (isMenuOpen) {
+                    mobileMenu.classList.remove('hidden');
+                    mobileMenu.classList.add('flex');
+                    hamburgerBtn.innerHTML = '☰';
+                } else {
+                    mobileMenu.classList.add('hidden');
+                    mobileMenu.classList.remove('flex');
+                    hamburgerBtn.innerHTML = '☰';
+                }
             });
-        });
+            document.querySelectorAll('#mobile-menu a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                    mobileMenu.classList.remove('flex');
+                    hamburgerBtn.innerHTML = '☰';
+                });
+            });
 
-    </script>
-    <!-- AOS JS -->
-    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-    <script>
-        AOS.init();
-    </script>
-    <!-- Scroll reavel -->
-    <script src="https://unpkg.com/scrollreveal"></script>
-    <script>
-        // Initialize ScrollReveal and target elements
-        ScrollReveal().reveal('.reveal', {
-            distance: '50px',
-            duration: 1000,
-            easing: 'ease-in-out',
-            origin: 'bottom',
-            interval: 200,
-            reset: false, // set to true if you want it to animate again on re-scroll
-        });
-    </script>
-
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
+            /* ===============================
+               Accordion
+            =============================== */
             const accordionButtons = document.querySelectorAll('.accordion-button');
-
             accordionButtons.forEach(button => {
                 button.addEventListener('click', () => {
                     const accordionContent = button.nextElementSibling;
                     const accordionArrow = button.querySelector('.accordion-arrow');
-
-                    // Toggle active class for styling
                     button.classList.toggle('active');
-
                     if (button.classList.contains('active')) {
-                        // Open the accordion
                         accordionContent.style.maxHeight = accordionContent.scrollHeight + 'px';
                         accordionArrow.style.transform = 'rotate(180deg)';
                     } else {
-                        // Close the accordion
                         accordionContent.style.maxHeight = '0px';
                         accordionArrow.style.transform = 'rotate(0deg)';
                     }
                 });
             });
-        });
-    </script>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            // --- Configuration ---
+            /* ===============================
+               Typewriter Effect
+            =============================== */
             const targetElement = document.getElementById('typewriter-subtitle');
             const textToType = 'Md. Istiak Adnan';
-            const typingSpeed = 50; // Time in milliseconds between each character
-
+            const typingSpeed = 50;
             if (targetElement) {
-                let i = 0; // Current character index
-
+                let i = 0;
                 function typeWriter() {
                     if (i < textToType.length) {
                         targetElement.innerHTML += textToType.charAt(i);
@@ -1538,12 +1461,24 @@
                         setTimeout(typeWriter, typingSpeed);
                     }
                 }
-
-                // Start the animation
                 typeWriter();
             }
+        };
+
+        /* ===============================
+           AOS + ScrollReveal Init
+        =============================== */
+        AOS.init();
+        ScrollReveal().reveal('.reveal', {
+            distance: '50px',
+            duration: 1000,
+            easing: 'ease-in-out',
+            origin: 'bottom',
+            interval: 200,
+            reset: false,
         });
     </script>
+
 
 </body>
 
