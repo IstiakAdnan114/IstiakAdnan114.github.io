@@ -20,14 +20,10 @@
             /* This creates the cursor */
             content: '|';
             font-weight: 200;
-            /* Makes the cursor thinner */
             display: inline-block;
-
-            /* The blinking animation */
             animation: blink-caret 0.75s step-end infinite;
         }
 
-        /* The keyframe animation for the blink */
         @keyframes blink-caret {
 
             from,
@@ -40,24 +36,15 @@
             }
         }
 
-        /* 
-  ==============================================
-  THE FIX FOR HORIZONTAL OVERFLOW (WHITE SPACE)
-  ==============================================
-  Add this to your main <style> tag.
-*/
+        /* Prevent horizontal overflow */
         body {
-            /* This is the magic rule. It tells the browser:
-       "Do not allow anything to be wider than the screen.
-       If something is, just clip it and hide the horizontal scrollbar."
-    */
             overflow-x: hidden;
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f2f5;
+            color: #1a202c;
         }
 
-        /* A temporary debugging tool - remove it when you're done! 
-/* {
-    border: 1px solid red !important;
-}*/
+        /* Slow spin animation */
         @keyframes spin-slow {
             from {
                 transform: rotate(0deg);
@@ -67,8 +54,6 @@
                 transform: rotate(360deg);
             }
         }
-
-        /* Add this to your main CSS file */
 
         .rotating-circle {
             animation: rotate 30s linear infinite;
@@ -90,7 +75,6 @@
             top: 50%;
             left: 50%;
             margin: -20px;
-            /* Half of icon width/height to truly center it */
             width: 40px;
             height: 40px;
             display: flex;
@@ -100,20 +84,17 @@
 
         .icon-item i {
             font-size: 2rem;
-            /* 32px */
             color: white;
             opacity: 0.15;
-            /* A slightly lower opacity for a more subtle background effect */
             transition: opacity 0.3s ease, transform 0.3s ease;
         }
 
-        /* Optional: A subtle effect when the user's mouse is in the area */
         .rotating-circle:hover i {
             opacity: 0.3;
             transform: scale(1.1);
         }
 
-        /* Particle background styles */
+        /* Particle background */
         #particles-background {
             position: absolute;
             top: 0;
@@ -122,19 +103,16 @@
             height: 100vh;
             z-index: -1;
             background: linear-gradient(to bottom, #1a0033, #2a4066);
-            /* Blue to purple gradient */
         }
 
         .hero-background {
             position: relative;
             min-height: 100vh;
             background: none;
-            /* Remove old background */
         }
 
         .hero-background::before {
             content: none;
-            /* Remove old overlay */
         }
 
         .hero-content {
@@ -182,31 +160,50 @@
             }
         }
 
-        /* Hamburger menu styles */
-        .hamburger-icon {
-            font-size: 1.5rem;
-            line-height: 1;
+        /* ===============================
+           HEADER & NAVIGATION
+        ================================ */
+        .nav-link {
+            color: white;
+            font-weight: 500;
+            transition: color 0.3s;
         }
 
-        /* --- EDITED: Simplified nav-menu styles for toggling --- */
-        @media (max-width: 767px) {
-            #nav-menu {
-                display: none;
-                /* Hide by default on mobile */
-            }
-
-            #nav-menu.active {
-                display: flex;
-                /* Show when active */
-            }
+        .nav-link:hover {
+            color: #d1d5db;
         }
 
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f0f2f5;
-            color: #1a202c;
+        /* Mobile Menu Overlay */
+        #mobile-menu {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            space-y: 8;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.5s ease-in-out;
         }
 
+        #mobile-menu.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .mobile-link {
+            color: white;
+            font-size: 1.75rem;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .mobile-link:hover {
+            color: #d1d5db;
+        }
+
+        /* ================================== */
+
+        /* Chart container */
         .chart-container {
             position: relative;
             width: 100%;
@@ -226,7 +223,7 @@
         .fade-in-section {
             opacity: 0;
             transform: translateY(20px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+            transition: opacity 0.3s ease-out, transform 0.3s ease-out;
         }
 
         .fade-in-section.is-visible {
@@ -258,7 +255,7 @@
             color: #F7B801;
         }
 
-        /* Timeline adjustments for responsiveness */
+        /* Timeline adjustments */
         .timeline-date-mobile {
             text-align: left;
             margin-bottom: 0.5rem;
@@ -267,10 +264,14 @@
         }
 
         .timeline-content-mobile {
-            margin-left: auto;
-            margin-right: auto;
             width: 100%;
-            max-width: 400px;
+            max-width: 100%;
+            padding: 0 1rem;
+        }
+
+        .timeline-content-mobile img {
+            width: 100%;
+            height: auto;
         }
 
         @media (min-width: 768px) {
@@ -307,7 +308,7 @@
             }
         }
 
-        /* Hero section background image styling */
+        /* Hero section background image */
         .hero-background {
             background-image: url('/images/alone.jpeg');
             background-size: cover;
@@ -344,7 +345,7 @@
             color: white;
         }
 
-        /* Ensure hero section scales properly */
+        /* Responsive hero text */
         @media (max-width: 640px) {
             .hero-background h1 {
                 font-size: 2.5rem;
@@ -359,7 +360,7 @@
             }
         }
 
-        /* Photo gallery responsiveness */
+        /* Photo gallery */
         @media (max-width: 640px) {
             .photo-gallery {
                 grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
@@ -372,16 +373,18 @@
             }
         }
     </style>
+
 </head>
 
 <body class="antialiased">
     <!-- --- EDITED: Changed header to be fixed and centered content --- -->
     <header class="fixed top-0 left-0 right-0 z-50 py-4 bg-[#3D348B] text-white shadow-md">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
-            <!-- You can add a logo or brand name here if you like -->
-            <div class="text-xl font-bold">
-                <!-- e.g., <a href="#home">My Portfolio</a> -->
-            </div>
+
+            <!-- Brand Name -->
+            <a href="#home" class="text-xl sm:text-2xl font-bold whitespace-nowrap">
+                <span id="intro-text1"></span>
+            </a>
 
             <!-- Hamburger Menu (Mobile Only) -->
             <button id="hamburger-btn" class="md:hidden text-white focus:outline-none text-3xl z-50"
@@ -389,48 +392,85 @@
                 ☰
             </button>
 
-            <!-- Navigation Menu -->
+            <!-- Desktop Navigation Menu -->
             <nav role="navigation" aria-label="Main navigation" class="hidden md:flex md:justify-center">
                 <ul id="nav-menu" class="md:flex md:items-center md:space-x-8">
-                    <li><a href="#home" class="text-white hover:text-gray-300 font-medium transition-colors">Home</a>
-                    </li>
-                    <li><a href="#about" class="text-white hover:text-gray-300 font-medium transition-colors">About
-                            Me</a></li>
-                    <li><a href="#experience"
-                            class="text-white hover:text-gray-300 font-medium transition-colors">Experience</a></li>
-                    <li><a href="#skills"
-                            class="text-white hover:text-gray-300 font-medium transition-colors">Skills</a></li>
-                    <li><a href="#projects"
-                            class="text-white hover:text-gray-300 font-medium transition-colors">Projects</a></li>
-                    <li><a href="#research"
-                            class="text-white hover:text-gray-300 font-medium transition-colors">Research</a></li>
-                    <li><a href="#photos"
-                            class="text-white hover:text-gray-300 font-medium transition-colors">Photos</a></li>
-                    <li><a href="#achievements"
-                            class="text-white hover:text-gray-300 font-medium transition-colors">Achievements</a></li>
-                    <li><a href="#contact"
-                            class="text-white hover:text-gray-300 font-medium transition-colors">Contact</a></li>
+                    <li><a href="#home" class="nav-link">Home</a></li>
+                    <li><a href="#about" class="nav-link">About Me</a></li>
+                    <li><a href="#experience" class="nav-link">Experience</a></li>
+                    <li><a href="#skills" class="nav-link">Skills</a></li>
+                    <li><a href="#projects" class="nav-link">Projects</a></li>
+                    <li><a href="#research" class="nav-link">Research</a></li>
+                    <li><a href="#photos" class="nav-link">Photos</a></li>
+                    <li><a href="#achievements" class="nav-link">Achievements</a></li>
+                    <li><a href="#contact" class="nav-link">Contact</a></li>
                 </ul>
             </nav>
 
-            <!-- Mobile Menu (overlay) -->
+            <!-- Mobile Menu Overlay -->
             <div id="mobile-menu"
-                class="hidden absolute top-0 left-0 w-full h-screen bg-[#3D348B] flex-col items-center justify-center space-y-6">
-                <a href="#home" class="text-white text-2xl">Home</a>
-                <a href="#about" class="text-white text-2xl">About Me</a>
-                <a href="#experience" class="text-white text-2xl">Experience</a>
-                <a href="#skills" class="text-white text-2xl">Skills</a>
-                <a href="#projects" class="text-white text-2xl">Projects</a>
-                <a href="#research" class="text-white text-2xl">Research</a>
-                <a href="#photos" class="text-white text-2xl">Photos</a>
-                <a href="#achievements" class="text-white text-2xl">Achievements</a>
-                <a href="#contact" class="text-white text-2xl">Contact</a>
+                class="hidden fixed top-0 left-0 w-full h-screen bg-[#3D348B] flex-col items-center justify-center space-y-8 opacity-0 pointer-events-none transition-all duration-500 ease-in-out">
+                <a href="#home" class="mobile-link">Home</a>
+                <a href="#about" class="mobile-link">About Me</a>
+                <a href="#experience" class="mobile-link">Experience</a>
+                <a href="#skills" class="mobile-link">Skills</a>
+                <a href="#projects" class="mobile-link">Projects</a>
+                <a href="#research" class="mobile-link">Research</a>
+                <a href="#photos" class="mobile-link">Photos</a>
+                <a href="#achievements" class="mobile-link">Achievements</a>
+                <a href="#contact" class="mobile-link">Contact</a>
             </div>
-
-            <!-- This div is for spacing if you want a right-aligned item later -->
-            <div></div>
         </div>
     </header>
+
+    <!-- Typewriter + Menu Toggle Script -->
+    <script>
+        // Typewriter effect
+        const text1 = "MD. ISTIAK ADNAN";
+        let j = 0;
+        const speed1 = 50;
+        function typeWriter1() {
+            if (j < text1.length) {
+                document.getElementById("intro-text1").innerHTML += text1.charAt(j);
+                j++;
+                setTimeout(typeWriter1, speed1);
+            }
+        }
+        document.addEventListener("DOMContentLoaded", typeWriter1);
+
+        // Mobile menu toggle
+        document.addEventListener("DOMContentLoaded", () => {
+            const hamburger = document.getElementById("hamburger-btn");
+            const mobileMenu = document.getElementById("mobile-menu");
+
+            hamburger.addEventListener("click", () => {
+                const isOpen = mobileMenu.classList.contains("active");
+
+                if (isOpen) {
+                    mobileMenu.classList.remove("active");
+                    setTimeout(() => {
+                        mobileMenu.classList.add("hidden");
+                    }, 500);
+                } else {
+                    mobileMenu.classList.remove("hidden");
+                    setTimeout(() => {
+                        mobileMenu.classList.add("active");
+                    }, 10);
+                }
+            });
+
+            // Close menu when a link is clicked
+            document.querySelectorAll("#mobile-menu a").forEach(link => {
+                link.addEventListener("click", () => {
+                    mobileMenu.classList.remove("active");
+                    setTimeout(() => {
+                        mobileMenu.classList.add("hidden");
+                    }, 500);
+                });
+            });
+        });
+    </script>
+
 
     <!-- --- EDITED: Added padding-top to main content to avoid being covered by the fixed header --- -->
     <main class="pt-17">
